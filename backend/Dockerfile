@@ -1,8 +1,8 @@
-FROM python:3.9-slim
+FROM python:3.9-slim-bullseye
 
 WORKDIR /app
 
-# optimize
+# Tối ưu hóa biến môi trường
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=1 \
@@ -10,11 +10,15 @@ ENV PYTHONUNBUFFERED=1 \
 
 COPY backend/requirements.txt .
 
+# Gộp lệnh RUN để giảm layer
+# QUAN TRỌNG: Cần prelink để chạy execstack fix lỗi trên Render
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends libgomp1 binutils && \
+    apt-get install -y --no-install-recommends libgomp1 prelink && \
     pip install -r requirements.txt && \
-    find /usr/local/lib/python3.9 -name "*.so" | xargs strip && \
-    apt-get remove -y binutils && \
+    # FIX LỖI "cannot enable executable stack" TRÊN RENDER
+    execstack -c /usr/local/lib/python3.9/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.cpython-39-x86_64-linux-gnu.so || true && \
+    # Cleanup: Gỡ prelink để giảm dung lượng
+    apt-get remove -y prelink && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
