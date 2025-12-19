@@ -1,0 +1,466 @@
+text,label,type,text_clean,label_id
+"Tỷ giá đô la mỹ hôm nay ngỏm quá, ad bán cho mình với",OTHERS,seed,"Tỷ giá đô la mỹ hôm nay ngỏm quá, ad bán cho mình với",5
+"Gửi lúa cho bạn, nhưng người nhận báo chưa có money",TRANSACTION,aug_1,"Gửi lúa cho bạn, nhưng người nhận báo chưa có money",2
+Add atm gan nhat voi mk vs,OTHERS,aug_1,Add atm gan nhat voi mk vs,5
+"Add atm nào gần đấy, atm nhà tớ bị toang",OTHERS,seed,"Add atm nào gần đấy, atm nhà tớ bị toang",5
+"Ty gia đo la uc hom nay len xuong the nao, ad ho tro minh",OTHERS,aug_2,"Ty gia đo la uc hom nay len xuong the nao, ad ho tro minh",5
+"Gặp vấn đề về tk, cần hỗ trợ gấp",FRAUD_REPORT,seed,"Gặp vấn đề về tk, cần hỗ trợ gấp",4
+"Bị trừ phí giao dịch mà ko rõ lý do, giải thích giùm",TRANSACTION,seed,"Bị trừ phí giao dịch mà ko rõ lý do, giải thích giùm",2
+"Thẻ bị lỗi, cần hỗ trợ đổi card mới gấp lắm",TRANSACTION,aug_2,"Thẻ bị lỗi, cần hỗ trợ đổi card mới gấp lắm",2
+"Thẻ chip bị lỗi, ko dùng được",CARD_ISSUE,seed,"Thẻ chip bị lỗi, ko dùng được",0
+"Tai khoan bi khoa quyen truy cap roi, mo lai giup vs",APP_LOGIN,aug_1,"Tai khoan bi khoa quyen truy cap roi, mo lai giup vs",1
+"Chuyen tien cho ban bi loi, ngom qua",TRANSACTION,aug_2,"Chuyen tien cho ban bi loi, ngom qua",2
+"App ngân hàng lỗi FaceID, đăng nhập sao?",APP_LOGIN,seed,"App ngân hàng lỗi FaceID, đăng nhập sao?",1
+"Tk bi loi, mat tien, can giup gap lam",FRAUD_REPORT,aug_2,"Tk bi loi, mat tien, can giup gap lam",4
+"Thẻ bị khóa do nhập sai, cần hỗ trợ ngay",CARD_ISSUE,seed,"Thẻ bị khóa do nhập sai, cần hỗ trợ ngay",0
+"Ad ơi, tỷ giá đô la hôm nay có sao ko, mình ko ăn được",OTHERS,seed,"Ad ơi, tỷ giá đô la hôm nay có sao ko, mình ko ăn được",5
+"card tk bị khóa, mở lại thế nào",CARD_ISSUE,aug_1,"card tk bị khóa, mở lại thế nào",0
+Làm hồ sơ vay tín chấp qua lương thế nào?,LOAN_SAVING,seed,Làm hồ sơ vay tín chấp qua lương thế nào?,3
+"Gap lam, chuyen tien ko dc, add oi",TRANSACTION,aug_2,"Gap lam, chuyen tien ko dc, add oi",2
+"The vs bi loi, lam sao đe sua",CARD_ISSUE,aug_1,"The vs bi loi, lam sao đe sua",0
+Tk của em bị bug otp ko về,APP_LOGIN,aug_2,Tk của em bị bug otp ko về,1
+"Thẻ atm ko hoạt động, toang rồi",CARD_ISSUE,seed,"Thẻ atm ko hoạt động, toang rồi",0
+"card atm bị lỗi, cần thay thế",OTHERS,aug_1,"card atm bị lỗi, cần thay thế",5
+"K dc sao ke, ad oi, hu qua, fix giup",LOAN_SAVING,aug_1,"K dc sao ke, ad oi, hu qua, fix giup",3
+"card tín dụng ko hoạt động, cần hỗ trợ để kích hoạt",FRAUD_REPORT,aug_1,"card tín dụng ko hoạt động, cần hỗ trợ để kích hoạt",4
+"Tk bị khóa, cần hỗ trợ mở khóa gấp",APP_LOGIN,seed,"Tk bị khóa, cần hỗ trợ mở khóa gấp",1
+"Thẻ bị lỗi, cần hỗ trợ ngay",CARD_ISSUE,seed,"Thẻ bị lỗi, cần hỗ trợ ngay",0
+Lo an vao link gia mao so mat tien qua,FRAUD_REPORT,aug_2,Lo an vao link gia mao so mat tien qua,4
+Tu van vay tin chap qua luong huhu,LOAN_SAVING,aug_1,Tu van vay tin chap qua luong huhu,3
+The atm cua to bi hong vs can giup đo,CARD_ISSUE,aug_1,The atm cua to bi hong vs can giup đo,0
+"Lỗi bảo mật ngân hàng, ko an toàn",FRAUD_REPORT,seed,"Lỗi bảo mật ngân hàng, ko an toàn",4
+"Muon tat toan so tiet kiem online, hu qua",LOAN_SAVING,aug_1,"Muon tat toan so tiet kiem online, hu qua",3
+"Thẻ của tớ bị k dc giao dịch, bực quá",OTHERS,seed,"Thẻ của tớ bị k dc giao dịch, bực quá",5
+"The atm bi khoa, nhap sai, can ho tro",CARD_ISSUE,aug_2,"The atm bi khoa, nhap sai, can ho tro",0
+"Thẻ mới bị toang, không quẹt dc, đổi mới 1 cái",CARD_ISSUE,seed,"Thẻ mới bị toang, không quẹt dc, đổi mới 1 cái",0
+Chuyển tiền qua ứng dụng bị bug cần hỗ trợ,TRANSACTION,aug_1,Chuyển tiền qua ứng dụng bị bug cần hỗ trợ,2
+Mở app ngân hàng để chuyển tiền nhưng k dc,APP_LOGIN,seed,Mở app ngân hàng để chuyển tiền nhưng k dc,1
+"Thẻ bị khóa vì nhập sai quá 3 lần, hư rồi",CARD_ISSUE,seed,"Thẻ bị khóa vì nhập sai quá 3 lần, hư rồi",0
+Vay tin chap qua luong can nhung giay to gi?,LOAN_SAVING,aug_1,Vay tin chap qua luong can nhung giay to gi?,3
+"App ngân hàng bị treo, cần giúp đỡ",APP_LOGIN,seed,"App ngân hàng bị treo, cần giúp đỡ",1
+"Thẻ tín dụng bị lộ thông tin, hư luôn",FRAUD_REPORT,seed,"Thẻ tín dụng bị lộ thông tin, hư luôn",4
+"Alo ad ơi, tỷ giá usd hôm nay bao nhiêu huhu",OTHERS,seed,"Alo ad ơi, tỷ giá usd hôm nay bao nhiêu huhu",5
+"Tính năng app ngân hàng bị ngỏm, ko sử dụng dc",APP_LOGIN,seed,"Tính năng app ngân hàng bị ngỏm, ko sử dụng dc",1
+"Bị trừ tiền lạ, bực quá, giải quyết nhanh",FRAUD_REPORT,seed,"Bị trừ tiền lạ, bực quá, giải quyết nhanh",4
+"Ma OTP toang roi, lam the nao",APP_LOGIN,aug_2,"Ma OTP toang roi, lam the nao",1
+"Tk bị giả mạo, có người gọi điện xưng công an",FRAUD_REPORT,seed,"Tk bị giả mạo, có người gọi điện xưng công an",4
+"The bi k dc, can ho tro cap cuu",OTHERS,aug_2,"The bi k dc, can ho tro cap cuu",5
+"Thẻ chưa về, cần nhanh để làm việc, alo ad",CARD_ISSUE,seed,"Thẻ chưa về, cần nhanh để làm việc, alo ad",0
+"Ngỏm lắm, vừa bị giả danh công an gọi điện",FRAUD_REPORT,seed,"Ngỏm lắm, vừa bị giả danh công an gọi điện",4
+"Alo add oi, faceid ko nhan dien, buc qua",APP_LOGIN,aug_2,"Alo add oi, faceid ko nhan dien, buc qua",1
+"Toang hết, điều kiện vay tín chấp?",LOAN_SAVING,seed,"Toang hết, điều kiện vay tín chấp?",3
+"Huhu, sao lai co giao dich la trong tai khoan",FRAUD_REPORT,aug_1,"Huhu, sao lai co giao dich la trong tai khoan",4
+"Chuyển xèng cho bạn bị lỗi, ngỏm quá",TRANSACTION,aug_1,"Chuyển xèng cho bạn bị lỗi, ngỏm quá",2
+"Nạp tiền ko vào, ngỏm quá!",FRAUD_REPORT,seed,"Nạp tiền ko vào, ngỏm quá!",4
+"Chuyển tiền bị lỏ tk bị hư, làm j",TRANSACTION,aug_2,"Chuyển tiền bị lỏ tk bị hư, làm j",2
+"Lại bug thẻ, k dc lấy tiền",CARD_ISSUE,aug_2,"Lại bug thẻ, k dc lấy tiền",0
+K dc chuyển lại tk cũ được ko,TRANSACTION,seed,K dc chuyển lại tk cũ được ko,2
+"Gấp, vừa ấn vào link lạ trên email, sợ bị mất xèng",FRAUD_REPORT,aug_1,"Gấp, vừa ấn vào link lạ trên email, sợ bị mất xèng",4
+"card bị giữ vì giả công an, bực ghê",FRAUD_REPORT,aug_1,"card bị giữ vì giả công an, bực ghê",4
+"Alo, thẻ atm bị k dc, cần giúp vs",OTHERS,seed,"Alo, thẻ atm bị k dc, cần giúp vs",5
+"Rut tien, atm bao loi, đoi the dc ko",TRANSACTION,aug_1,"Rut tien, atm bao loi, đoi the dc ko",2
+"Alo ad, tk bi tru tien la, ho tro nhanh",FRAUD_REPORT,aug_1,"Alo ad, tk bi tru tien la, ho tro nhanh",4
+"Gấp lắm, thẻ bị khóa, nhập sai mk",CARD_ISSUE,seed,"Gấp lắm, thẻ bị khóa, nhập sai mk",0
+"Tk bị trừ xèng lạ, cần kiểm tra gấp",FRAUD_REPORT,aug_2,"Tk bị trừ xèng lạ, cần kiểm tra gấp",4
+"Giao dịch online bị lỗi, mất lúa oan uổng",TRANSACTION,aug_2,"Giao dịch online bị lỗi, mất lúa oan uổng",2
+"Thẻ tk bị kẹt trong máy, bực quá",CARD_ISSUE,seed,"Thẻ tk bị kẹt trong máy, bực quá",0
+"Chuyển tiền cho bạn rồi, sao người nhận báo chưa có lúa",TRANSACTION,aug_2,"Chuyển tiền cho bạn rồi, sao người nhận báo chưa có lúa",2
+"Thẻ của mình bị lag ko dc tk, huhu",OTHERS,aug_1,"Thẻ của mình bị lag ko dc tk, huhu",5
+Tỷ giá đô la hiện tại có lên hong,OTHERS,aug_1,Tỷ giá đô la hiện tại có lên hong,5
+"Thẻ atm bị lỗi, cần hỗ trợ gấp",OTHERS,seed,"Thẻ atm bị lỗi, cần hỗ trợ gấp",5
+"FaceID bi loi, mo app no cu loi hoai",APP_LOGIN,aug_2,"FaceID bi loi, mo app no cu loi hoai",1
+"Nghi bị lừa đảo qua mạng, hư luôn tk",FRAUD_REPORT,seed,"Nghi bị lừa đảo qua mạng, hư luôn tk",4
+"Add ơi, card của tớ bị lỗi, k dc sử dụng",CARD_ISSUE,aug_1,"Add ơi, card của tớ bị lỗi, k dc sử dụng",0
+Tỷ giá đô la hôm nay có tốt cho việc chuyển tiền ko?,OTHERS,seed,Tỷ giá đô la hôm nay có tốt cho việc chuyển tiền ko?,5
+"Ko dc sao kê lương, cần ad giúp đỡ",LOAN_SAVING,seed,"Ko dc sao kê lương, cần ad giúp đỡ",3
+"Tk loi, ngom qua, dc giup vs",TRANSACTION,aug_1,"Tk loi, ngom qua, dc giup vs",2
+"Add ơi, thẻ bị k dc, lỗi quá",CARD_ISSUE,seed,"Add ơi, thẻ bị k dc, lỗi quá",0
+"Add ơi, thẻ bị k dc, lag quá",CARD_ISSUE,aug_1,"Add ơi, thẻ bị k dc, lag quá",0
+"Alo ad, mã OTP gửi về bị lỗi, gửi lại giúp vs",APP_LOGIN,seed,"Alo ad, mã OTP gửi về bị lỗi, gửi lại giúp vs",1
+"card atm lỗi, nhập sai mk, add ơi",CARD_ISSUE,aug_2,"card atm lỗi, nhập sai mk, add ơi",0
+"Tk lỏ gửi xèng ko dc, bực quá",TRANSACTION,aug_2,"Tk lỏ gửi xèng ko dc, bực quá",2
+E cần biết cách xử lý khi bị thằng giả công an gọi điện,FRAUD_REPORT,seed,E cần biết cách xử lý khi bị thằng giả công an gọi điện,4
+"Gấp lắm, cần hỗ trợ về thẻ",FRAUD_REPORT,seed,"Gấp lắm, cần hỗ trợ về thẻ",4
+"card atm ko hoạt động, cần giúp đỡ",TRANSACTION,aug_1,"card atm ko hoạt động, cần giúp đỡ",2
+"Tự nhiên bị trừ tiền ko biết lý do, hư luôn",FRAUD_REPORT,seed,"Tự nhiên bị trừ tiền ko biết lý do, hư luôn",4
+Vay tín chấp qua lương cần những giấy tờ gì?,LOAN_SAVING,seed,Vay tín chấp qua lương cần những giấy tờ gì?,3
+"card atm ko dc, cần tìm atm khác để chuyển tiền",OTHERS,aug_2,"card atm ko dc, cần tìm atm khác để chuyển tiền",5
+"Chuyển xèng cho mẹ, chưa thấy, add ơi",TRANSACTION,aug_2,"Chuyển xèng cho mẹ, chưa thấy, add ơi",2
+No the tin dung co dc vay khong?,LOAN_SAVING,aug_1,No the tin dung co dc vay khong?,3
+"Ko an het, thang gia cong an goi đien bao toi chuyen tien",FRAUD_REPORT,aug_1,"Ko an het, thang gia cong an goi đien bao toi chuyen tien",4
+"Toang rồi, đổi điện thoại mới mà ko đăng nhập app bank dc",APP_LOGIN,seed,"Toang rồi, đổi điện thoại mới mà ko đăng nhập app bank dc",1
+"card của mình bị lỗi chip, đổi mới dc k",OTHERS,aug_2,"card của mình bị lỗi chip, đổi mới dc k",5
+"Nâng hạn mức dc chưa, huhu chưa được",LOAN_SAVING,seed,"Nâng hạn mức dc chưa, huhu chưa được",3
+"Huhu, mat tien oan uong, ho tro voi",FRAUD_REPORT,aug_2,"Huhu, mat tien oan uong, ho tro voi",4
+Can ngung quang cao bao hiem ngay,OTHERS,aug_1,Can ngung quang cao bao hiem ngay,5
+"Chuyển tiền sai tk, gấp lắm ad",TRANSACTION,seed,"Chuyển tiền sai tk, gấp lắm ad",2
+"Add ơi, sao thẻ lại bị trừ tiền mà ko có lý do",TRANSACTION,seed,"Add ơi, sao thẻ lại bị trừ tiền mà ko có lý do",2
+"Huhu, tim khong thay gio lam viec cua ngan hang",OTHERS,aug_2,"Huhu, tim khong thay gio lam viec cua ngan hang",5
+"Chuyển tiền ko dc, tk lỗi, bực quá",TRANSACTION,seed,"Chuyển tiền ko dc, tk lỗi, bực quá",2
+"Alo ad oi, so tiet kiem online loi, muon tat toan",LOAN_SAVING,aug_2,"Alo ad oi, so tiet kiem online loi, muon tat toan",3
+"Tk online lỗi, muốn tất toán, k dc",LOAN_SAVING,seed,"Tk online lỗi, muốn tất toán, k dc",3
+Cho hỏi vay tín chấp qua lương cần giấy tờ gì?,LOAN_SAVING,seed,Cho hỏi vay tín chấp qua lương cần giấy tờ gì?,3
+"Bị lỗi sao kê lương 3 tháng, huhu, cần giúp",LOAN_SAVING,seed,"Bị lỗi sao kê lương 3 tháng, huhu, cần giúp",3
+Luong 10tr dc vay bao nhieu thi dc?,LOAN_SAVING,aug_2,Luong 10tr dc vay bao nhieu thi dc?,3
+"Lỗi hệ thống, chuyển money ko dc, cần giúp vs",TRANSACTION,aug_1,"Lỗi hệ thống, chuyển money ko dc, cần giúp vs",2
+Gui tiet kiem o đay co uu đai gi khong?,LOAN_SAVING,aug_1,Gui tiet kiem o đay co uu đai gi khong?,3
+"Bị lỗi app, cần giúp ngay ad ơi",APP_LOGIN,seed,"Bị lỗi app, cần giúp ngay ad ơi",1
+"Thẻ bị bug ko dc quẹt, alo add",CARD_ISSUE,aug_2,"Thẻ bị bug ko dc quẹt, alo add",0
+Ngân hàng app ko chạy,APP_LOGIN,seed,Ngân hàng app ko chạy,1
+"Tìm atm gần nhất, cần rút tiền ngay",OTHERS,seed,"Tìm atm gần nhất, cần rút tiền ngay",5
+"Lỗi hệ thống, ko nâng hạn mức dc",LOAN_SAVING,seed,"Lỗi hệ thống, ko nâng hạn mức dc",3
+"Bị mất tiền oan, vì nhấn vào link lạ, add giúp",FRAUD_REPORT,seed,"Bị mất tiền oan, vì nhấn vào link lạ, add giúp",4
+Vay tín chấp qua lương có thể vay lại sau khi trả dc ko?,LOAN_SAVING,seed,Vay tín chấp qua lương có thể vay lại sau khi trả dc ko?,3
+"The bi hong, can đoi moi gap lam",TRANSACTION,aug_2,"The bi hong, can đoi moi gap lam",2
+Gửi sao kê lương 3 tháng qua email dc không ad?,LOAN_SAVING,seed,Gửi sao kê lương 3 tháng qua email dc không ad?,3
+"Ngăn app ngân hàng ko dc, bực quá",APP_LOGIN,seed,"Ngăn app ngân hàng ko dc, bực quá",1
+"Mở app ngân hàng lên, bị lag otp",APP_LOGIN,aug_1,"Mở app ngân hàng lên, bị lag otp",1
+"Add atm nào gần đấy để tớ qua rút tiền, atm nhà tớ bị lỗi",OTHERS,seed,"Add atm nào gần đấy để tớ qua rút tiền, atm nhà tớ bị lỗi",5
+"Alo add ơi, thẻ tín dụng bị lộ, tui cần giúp đỡ",FRAUD_REPORT,seed,"Alo add ơi, thẻ tín dụng bị lộ, tui cần giúp đỡ",4
+"Mở app ngân hàng, nhập số điện thoại, sao ko có mã OTP",APP_LOGIN,seed,"Mở app ngân hàng, nhập số điện thoại, sao ko có mã OTP",1
+"Tự nhiên tk tiết kiệm của tui bị khóa, mở lại thế nào?",LOAN_SAVING,seed,"Tự nhiên tk tiết kiệm của tui bị khóa, mở lại thế nào?",3
+"Alo,tôibị_lỗi_thẻ_atm_ko_quẹt_dc_gấp_lắm",CARD_ISSUE,seed,"Alo,tôibị_lỗi_thẻ_atm_ko_quẹt_dc_gấp_lắm",0
+"Thẻ bị ngỏm, ko giao dịch dc",TRANSACTION,seed,"Thẻ bị ngỏm, ko giao dịch dc",2
+"Tk online bị lỗi, ko đăng nhập dc",OTHERS,seed,"Tk online bị lỗi, ko đăng nhập dc",5
+"Chuyển tiền sai tài khoản, giờ ko dc lấy lại, toang",TRANSACTION,seed,"Chuyển tiền sai tài khoản, giờ ko dc lấy lại, toang",2
+"Lỗi FaceID, mở app ko dc, huhu",APP_LOGIN,seed,"Lỗi FaceID, mở app ko dc, huhu",1
+"Sao tk cua to lai bi loi the, huhu",OTHERS,aug_1,"Sao tk cua to lai bi loi the, huhu",5
+"lag thẻ, ko vào dc, cần thay thế mới",CARD_ISSUE,aug_1,"lag thẻ, ko vào dc, cần thay thế mới",0
+"card atm của tao bị lỗi, cần hỗ trợ ngay",CARD_ISSUE,aug_2,"card atm của tao bị lỗi, cần hỗ trợ ngay",0
+"K dc otp, phải làm sao ad",APP_LOGIN,seed,"K dc otp, phải làm sao ad",1
+"Gọi điện toàn quảng cáo bảo hiểm, bực quá",OTHERS,seed,"Gọi điện toàn quảng cáo bảo hiểm, bực quá",5
+"Alo ad, tao bị gọi điện giả công an, cần giúp đỡ gấp",FRAUD_REPORT,seed,"Alo ad, tao bị gọi điện giả công an, cần giúp đỡ gấp",4
+"Alo ad ơi, sao thẻ tk của tớ ko dc quẹt",OTHERS,seed,"Alo ad ơi, sao thẻ tk của tớ ko dc quẹt",5
+Làm sao chuyển lại tk cũ,TRANSACTION,seed,Làm sao chuyển lại tk cũ,2
+"Thẻ chip bị hư, làm sao lấy tiền huhu",CARD_ISSUE,seed,"Thẻ chip bị hư, làm sao lấy tiền huhu",0
+"Mở thẻ tín dụng bị lỗi, add ơi giúp",TRANSACTION,seed,"Mở thẻ tín dụng bị lỗi, add ơi giúp",2
+"card ko hoạt động, lỏ chip, cần kiểm tra",CARD_ISSUE,aug_1,"card ko hoạt động, lỏ chip, cần kiểm tra",0
+"Ty gia đo la canada hom nay bao nhieu, ad cho minh biet",OTHERS,aug_2,"Ty gia đo la canada hom nay bao nhieu, ad cho minh biet",5
+"The chip loi, ra ngan hang lam cai j",CARD_ISSUE,aug_2,"The chip loi, ra ngan hang lam cai j",0
+"Thẻ chip bị trầy xước tùm lum, đổi thẻ mới dc hông",TRANSACTION,aug_1,"Thẻ chip bị trầy xước tùm lum, đổi thẻ mới dc hông",2
+"Bực quá, vay tín chấp qua lương k dc",LOAN_SAVING,seed,"Bực quá, vay tín chấp qua lương k dc",3
+Vay tin chap co uu đai cho khach hang cu ko?,LOAN_SAVING,aug_1,Vay tin chap co uu đai cho khach hang cu ko?,3
+Thẻ bị ngỏm không lấy dc tiền,CARD_ISSUE,seed,Thẻ bị ngỏm không lấy dc tiền,0
+"Thẻ mất, cần làm lại card mới nhanh",OTHERS,aug_2,"Thẻ mất, cần làm lại card mới nhanh",5
+"Add ơi, card tk bị lỗi, cần đổi mới",CARD_ISSUE,aug_1,"Add ơi, card tk bị lỗi, cần đổi mới",0
+"Vs tk ngân hàng lỗi, gửi mã otp không đến",APP_LOGIN,seed,"Vs tk ngân hàng lỗi, gửi mã otp không đến",1
+"Tk của tôi ko hoạt động, sao thế",OTHERS,seed,"Tk của tôi ko hoạt động, sao thế",5
+"Add ơi, cần sao kê lương 3 tháng để đi du học, giúp mình nhé",LOAN_SAVING,seed,"Add ơi, cần sao kê lương 3 tháng để đi du học, giúp mình nhé",3
+"Thẻ atm lỗi, nhập sai, dc hỗ trợ ko",CARD_ISSUE,seed,"Thẻ atm lỗi, nhập sai, dc hỗ trợ ko",0
+"Gửi tiết kiệm ngân hàng này an toàn không, ko muốn bị lừa",LOAN_SAVING,seed,"Gửi tiết kiệm ngân hàng này an toàn không, ko muốn bị lừa",3
+"Bị khóa tk, làm sao mở lại dc?",APP_LOGIN,seed,"Bị khóa tk, làm sao mở lại dc?",1
+"Cứ thấy tk bị trừ tiền hong biết tại sao, bực quá",FRAUD_REPORT,aug_1,"Cứ thấy tk bị trừ tiền hong biết tại sao, bực quá",4
+"The cua to bi loi, can ho tro",CARD_ISSUE,aug_1,"The cua to bi loi, can ho tro",0
+Thẻ chip bi trầy xước tùm lum ko quẹt dc ad ơi,OTHERS,seed,Thẻ chip bi trầy xước tùm lum ko quẹt dc ad ơi,5
+"Alo, card lỏ chip rồi, ra cây ATM nó nhả ra hoài bực ghê",CARD_ISSUE,aug_2,"Alo, card lỏ chip rồi, ra cây ATM nó nhả ra hoài bực ghê",0
+Lỗi gì mà đăng nhập app ngân hàng ko đc,APP_LOGIN,seed,Lỗi gì mà đăng nhập app ngân hàng ko đc,1
+"Thẻ dc phát hành mới mà đã bị lỗi chip, đổi mới dc không?",CARD_ISSUE,seed,"Thẻ dc phát hành mới mà đã bị lỗi chip, đổi mới dc không?",0
+"FaceID nó toang, cần hỗ trợ gấp lắm ad ơi",APP_LOGIN,seed,"FaceID nó toang, cần hỗ trợ gấp lắm ad ơi",1
+"Bị khóa thẻ atm, nhập sai mk quá nhiều",CARD_ISSUE,seed,"Bị khóa thẻ atm, nhập sai mk quá nhiều",0
+"Hư quá, chuyển tiền 2 ngày rồi còn ko vào",TRANSACTION,seed,"Hư quá, chuyển tiền 2 ngày rồi còn ko vào",2
+"Lỗi gì mà chuyển tiền ko dc, alo add",TRANSACTION,seed,"Lỗi gì mà chuyển tiền ko dc, alo add",2
+"Buc qua, moi đoi đien thoai nhung đang nhap app ngan hang ko thanh cong",APP_LOGIN,aug_2,"Buc qua, moi đoi đien thoai nhung đang nhap app ngan hang ko thanh cong",1
+"Add ơi, tk bị hack, cần xử lý ngay",FRAUD_REPORT,seed,"Add ơi, tk bị hack, cần xử lý ngay",4
+"Add ơi, e chuyển xèng nhưng người nhận báo chưa có tiền, k dc",TRANSACTION,aug_2,"Add ơi, e chuyển xèng nhưng người nhận báo chưa có tiền, k dc",2
+"Hôm nay tỷ giá đô la singapore lên hay xuống, ad cho biết",OTHERS,seed,"Hôm nay tỷ giá đô la singapore lên hay xuống, ad cho biết",5
+"Buc qua, lai suat tiet kiem qua thap huhu",LOAN_SAVING,aug_1,"Buc qua, lai suat tiet kiem qua thap huhu",3
+"E bị 1 thằng gọi điện giả danh công an, ko biết xử lý sao",FRAUD_REPORT,seed,"E bị 1 thằng gọi điện giả danh công an, ko biết xử lý sao",4
+"Hôm qua gọi tới 5 cuộc điện thoại bảo hiểm, toang cả ngày",OTHERS,seed,"Hôm qua gọi tới 5 cuộc điện thoại bảo hiểm, toang cả ngày",5
+"Tk bi block, ko dc vao",OTHERS,aug_1,"Tk bi block, ko dc vao",5
+"Chuyen khoan chua thanh cong, nguoi nhan k nhan dc",TRANSACTION,aug_1,"Chuyen khoan chua thanh cong, nguoi nhan k nhan dc",2
+"Tk bị lỗi, alo ad ơi giúp vs",TRANSACTION,seed,"Tk bị lỗi, alo ad ơi giúp vs",2
+Cái netbanking nó toang rồi add ơi,TRANSACTION,seed,Cái netbanking nó toang rồi add ơi,2
+"Tk bị lỗi, mở lại giúp add",APP_LOGIN,seed,"Tk bị lỗi, mở lại giúp add",1
+"Bi loi app, can giup ngay ad oi",APP_LOGIN,aug_1,"Bi loi app, can giup ngay ad oi",1
+"Bị khóa card atm, nhập sai mk quá nhiều",CARD_ISSUE,aug_2,"Bị khóa card atm, nhập sai mk quá nhiều",0
+"Mã OTP không về, cần hỗ trợ ngay",APP_LOGIN,seed,"Mã OTP không về, cần hỗ trợ ngay",1
+"Chuyển lúa ko dc, tk lag bực quá",TRANSACTION,aug_2,"Chuyển lúa ko dc, tk lag bực quá",2
+"Lỗi rồi, làm sao vay được?",LOAN_SAVING,seed,"Lỗi rồi, làm sao vay được?",3
+"Mã OTP hết hạn, gửi lại giúp",APP_LOGIN,seed,"Mã OTP hết hạn, gửi lại giúp",1
+"Gap lam, nho add kiem tra lai giao dich",TRANSACTION,aug_1,"Gap lam, nho add kiem tra lai giao dich",2
+"Vay tin chap o ngan hang cu, sang ngan hang moi dc khong?",LOAN_SAVING,aug_2,"Vay tin chap o ngan hang cu, sang ngan hang moi dc khong?",3
+"card atm bị hư, ko rút dc tiền",TRANSACTION,aug_2,"card atm bị hư, ko rút dc tiền",2
+bug gì mà toàn nhận đc cuộc gọi spam huhu,OTHERS,aug_2,bug gì mà toàn nhận đc cuộc gọi spam huhu,5
+"Thẻ bị hỏng, cần thay thế bằng thẻ mới",CARD_ISSUE,seed,"Thẻ bị hỏng, cần thay thế bằng thẻ mới",0
+Làm sao xem dc sao kê lương 3 tháng qua nh896?,LOAN_SAVING,seed,Làm sao xem dc sao kê lương 3 tháng qua nh896?,3
+"Chuyển tiền bị hư, làm j để chuyển lại",TRANSACTION,seed,"Chuyển tiền bị hư, làm j để chuyển lại",2
+"Hơi bực, otp không gửi đến",APP_LOGIN,seed,"Hơi bực, otp không gửi đến",1
+"lag hệ thống à, chuyển nhầm tk",TRANSACTION,aug_1,"lag hệ thống à, chuyển nhầm tk",2
+Co nguoi gia danh cong an goi đien bao verification thong tin tk,FRAUD_REPORT,aug_2,Co nguoi gia danh cong an goi đien bao verification thong tin tk,4
+"Tk cua em bi loi, otp ko ve",APP_LOGIN,aug_1,"Tk cua em bi loi, otp ko ve",1
+"Tk bị lỗi, ko chuyển dc tiền",TRANSACTION,seed,"Tk bị lỗi, ko chuyển dc tiền",2
+"Add ơi, chuyển tiền bị lỗi, dc giải quyết giúp",TRANSACTION,seed,"Add ơi, chuyển tiền bị lỗi, dc giải quyết giúp",2
+"Đổi mk liên tục tk vẫn bị lỗi, ko ăn",FRAUD_REPORT,seed,"Đổi mk liên tục tk vẫn bị lỗi, ko ăn",4
+"Gap lam, can biet lai suat tiet kiem ngay bay gio",LOAN_SAVING,aug_2,"Gap lam, can biet lai suat tiet kiem ngay bay gio",3
+Thẻ bị lỏ cần fix ngay huhu,OTHERS,aug_1,Thẻ bị lỏ cần fix ngay huhu,5
+"Toang roai, mat tien oan",FRAUD_REPORT,aug_2,"Toang roai, mat tien oan",4
+"Alo ad ơi, chuyển tiền sai tk, cần giúp lấy lại",TRANSACTION,seed,"Alo ad ơi, chuyển tiền sai tk, cần giúp lấy lại",2
+"The khong ve, tk chua nhan dc, gim giup",CARD_ISSUE,aug_2,"The khong ve, tk chua nhan dc, gim giup",0
+"Toang, thông tin thẻ tín dụng bị lộ, cần hỗ trợ gấp",FRAUD_REPORT,seed,"Toang, thông tin thẻ tín dụng bị lộ, cần hỗ trợ gấp",4
+"Thẻ atm bị lỗi, cần thay thế để tiếp tục sử dụng",CARD_ISSUE,seed,"Thẻ atm bị lỗi, cần thay thế để tiếp tục sử dụng",0
+"Thẻ chip bị hỏng, cần đổi mới ngay",CARD_ISSUE,seed,"Thẻ chip bị hỏng, cần đổi mới ngay",0
+"Cài app bank trên máy mới, nhưng ko vào dc, add ơi",APP_LOGIN,seed,"Cài app bank trên máy mới, nhưng ko vào dc, add ơi",1
+"Alo, có người gọi điện giả danh công an, nói tôi bị hack tk, phải đổi ngay",FRAUD_REPORT,seed,"Alo, có người gọi điện giả danh công an, nói tôi bị hack tk, phải đổi ngay",4
+Thẻ bị lỗi không hoạt động,CARD_ISSUE,seed,Thẻ bị lỗi không hoạt động,0
+"Toang hết, mất gần 5 triệu không hiểu tại sao",FRAUD_REPORT,seed,"Toang hết, mất gần 5 triệu không hiểu tại sao",4
+Lỗi gì mà chuyển money ko dc,TRANSACTION,aug_1,Lỗi gì mà chuyển money ko dc,2
+Cần hỗ trợ card atm gấp lắm,CARD_ISSUE,aug_2,Cần hỗ trợ card atm gấp lắm,0
+"Ko dc chuyển tiền, tk bị lỗi chip",TRANSACTION,seed,"Ko dc chuyển tiền, tk bị lỗi chip",2
+"FaceID nó hư rồi, cần hỗ trợ gấp lắm",APP_LOGIN,seed,"FaceID nó hư rồi, cần hỗ trợ gấp lắm",1
+"App ngân hàng bị lỗi, FaceID nó ko hoạt động, tk mới",APP_LOGIN,seed,"App ngân hàng bị lỗi, FaceID nó ko hoạt động, tk mới",1
+Sao tai khoan bi tru tien ma ko dc thong bao,TRANSACTION,aug_1,Sao tai khoan bi tru tien ma ko dc thong bao,2
+"Sợ l失 tiền quá, vừa ấn vào link lạ trên zalo",FRAUD_REPORT,seed,"Sợ l失 tiền quá, vừa ấn vào link lạ trên zalo",4
+"Lừa đảo qua mạng, toang toàn bộ tk",FRAUD_REPORT,seed,"Lừa đảo qua mạng, toang toàn bộ tk",4
+"Gap lam, can ho tro đoi đien thoai moi va đang nhap lai",APP_LOGIN,aug_1,"Gap lam, can ho tro đoi đien thoai moi va đang nhap lai",1
+"Alo, card bị lỗi, cần gửi về ngân hàng để sửa",OTHERS,aug_1,"Alo, card bị lỗi, cần gửi về ngân hàng để sửa",5
+"Alo, mã OTP ko về, giúp vs",APP_LOGIN,seed,"Alo, mã OTP ko về, giúp vs",1
+"Tk bị lộ, cần khóa thẻ ngay",FRAUD_REPORT,seed,"Tk bị lộ, cần khóa thẻ ngay",4
+"The bi nuot roi, lam gi bay gio",CARD_ISSUE,aug_2,"The bi nuot roi, lam gi bay gio",0
+Lai suat gui tiet kiem hien tai co hap dan khong?,LOAN_SAVING,aug_2,Lai suat gui tiet kiem hien tai co hap dan khong?,3
+Sao giao dịch thành công mà vẫn bị trừ phí,TRANSACTION,seed,Sao giao dịch thành công mà vẫn bị trừ phí,2
+"Giao dịch bị lỗi, cần hỗ trợ ngay, gấp lắm",TRANSACTION,seed,"Giao dịch bị lỗi, cần hỗ trợ ngay, gấp lắm",2
+"Ad ơi, tỷ giá đô la hôm nay bị lỗi, mình ko xem dc",OTHERS,seed,"Ad ơi, tỷ giá đô la hôm nay bị lỗi, mình ko xem dc",5
+"Rút tiền, atm báo ko đủ, toang luôn",TRANSACTION,seed,"Rút tiền, atm báo ko đủ, toang luôn",2
+"Alo add, thẻ lỗi quẹt ko dc",CARD_ISSUE,seed,"Alo add, thẻ lỗi quẹt ko dc",0
+"card tôi bị lỏ ko vào tk đc, add ơi",TRANSACTION,aug_2,"card tôi bị lỏ ko vào tk đc, add ơi",2
+Chim_cua_toi_bi_loi_ngom_toang_ko_dc_su_dung,CARD_ISSUE,aug_2,Chim_cua_toi_bi_loi_ngom_toang_ko_dc_su_dung,0
+"Alo, tk bị lỗi, mất tiền, cần hỗ trợ gấp",FRAUD_REPORT,seed,"Alo, tk bị lỗi, mất tiền, cần hỗ trợ gấp",4
+"Tk bị toang, vào hệ thống bị lag",OTHERS,aug_1,"Tk bị toang, vào hệ thống bị lag",5
+"Alo, thẻ visa ko sử dụng dc",OTHERS,seed,"Alo, thẻ visa ko sử dụng dc",5
+Co nguoi gia danh cong an goi đien huhu,FRAUD_REPORT,aug_1,Co nguoi gia danh cong an goi đien huhu,4
+"Hỏi ad, tk bị bug mất tiền",FRAUD_REPORT,aug_2,"Hỏi ad, tk bị bug mất tiền",4
+"Vs lai suat gui tiet kiem, ad co the cho biet khong?",LOAN_SAVING,aug_2,"Vs lai suat gui tiet kiem, ad co the cho biet khong?",3
+"Lai suat tiet kiem hang thang hay hang quy, minh muon biet",LOAN_SAVING,aug_2,"Lai suat tiet kiem hang thang hay hang quy, minh muon biet",3
+"Lãi suất tiết kiệm thấp quá, đổi ngân hàng dc ko?",LOAN_SAVING,seed,"Lãi suất tiết kiệm thấp quá, đổi ngân hàng dc ko?",3
+App ngan hang đang bi hu,APP_LOGIN,aug_2,App ngan hang đang bi hu,1
+Cần sao kê lương 3 tháng để vay vốn,LOAN_SAVING,seed,Cần sao kê lương 3 tháng để vay vốn,3
+card bị ngỏm cần giúp đỡ gấp,CARD_ISSUE,aug_2,card bị ngỏm cần giúp đỡ gấp,0
+"The atm bi hong, can ho tro ngay",CARD_ISSUE,aug_2,"The atm bi hong, can ho tro ngay",0
+"The bi hu hong, gui lai cho minh nhe",CARD_ISSUE,aug_1,"The bi hu hong, gui lai cho minh nhe",0
+"Nang han muc dc, add cho minh ngay",LOAN_SAVING,aug_1,"Nang han muc dc, add cho minh ngay",3
+"card bị lỗi, cần hỗ trợ đổi thẻ mới gấp lắm",TRANSACTION,aug_1,"card bị lỗi, cần hỗ trợ đổi thẻ mới gấp lắm",2
+"Ma OTP ko nhan đc, buc qua, ho tro nhanh",APP_LOGIN,aug_1,"Ma OTP ko nhan đc, buc qua, ho tro nhanh",1
+"Thẻ tk bị toang, cần đổi tk mới",OTHERS,seed,"Thẻ tk bị toang, cần đổi tk mới",5
+"The chip bi bong, can thay the",OTHERS,aug_2,"The chip bi bong, can thay the",5
+"Tk của người nhận bị khóa, chuyển lúa ko vô, cần mở khóa",TRANSACTION,aug_2,"Tk của người nhận bị khóa, chuyển lúa ko vô, cần mở khóa",2
+"Mở app ngân hàng, FaceID nó toang, alo add ơi",APP_LOGIN,seed,"Mở app ngân hàng, FaceID nó toang, alo add ơi",1
+"Nguoi nhan bao chua co tien, kiem tra lai giup",TRANSACTION,aug_1,"Nguoi nhan bao chua co tien, kiem tra lai giup",2
+"Lỗi mạng à, sao ko gửi đc mã OTP",APP_LOGIN,seed,"Lỗi mạng à, sao ko gửi đc mã OTP",1
+"Tk luong 3 thang bi ngom, lam sao xem dc?",LOAN_SAVING,aug_2,"Tk luong 3 thang bi ngom, lam sao xem dc?",3
+"Chuyển money sai tk, gấp lắm ad",TRANSACTION,aug_2,"Chuyển money sai tk, gấp lắm ad",2
+"Hỏi tỷ giá đô la, k dc thì hư cái j rồi",OTHERS,seed,"Hỏi tỷ giá đô la, k dc thì hư cái j rồi",5
+"Thẻ atm lỗi, nhập sai mk, ko dc",CARD_ISSUE,seed,"Thẻ atm lỗi, nhập sai mk, ko dc",0
+"Ko dc, có người giả công an gọi điện",FRAUD_REPORT,seed,"Ko dc, có người giả công an gọi điện",4
+"Thẻ atm lỏ nhập sai, dc hỗ trợ ko",CARD_ISSUE,aug_1,"Thẻ atm lỏ nhập sai, dc hỗ trợ ko",0
+"The moi nhan, sao lai bi khoa, mo lai giup",TRANSACTION,aug_1,"The moi nhan, sao lai bi khoa, mo lai giup",2
+Lỗi card cần giúp hỗ trợ gấp lắm,CARD_ISSUE,aug_2,Lỗi card cần giúp hỗ trợ gấp lắm,0
+Cần sao kê lương để chứng minh thu nhập,LOAN_SAVING,seed,Cần sao kê lương để chứng minh thu nhập,3
+"thẻ atm mình bị lỗi, cần làm lại thế nào",OTHERS,seed,"thẻ atm mình bị lỗi, cần làm lại thế nào",5
+"FaceID nó ko nhận diện hết ad ơi, hư quá",APP_LOGIN,seed,"FaceID nó ko nhận diện hết ad ơi, hư quá",1
+"Người nhận báo chưa có tiền, kiểm tra lại tk",TRANSACTION,seed,"Người nhận báo chưa có tiền, kiểm tra lại tk",2
+"Ngỏm quá, mã otp ko gửi đến",APP_LOGIN,seed,"Ngỏm quá, mã otp ko gửi đến",1
+"Sao the khong an du lieu gi ca, hu hong gi thi noi cho toi biet",OTHERS,aug_1,"Sao the khong an du lieu gi ca, hu hong gi thi noi cho toi biet",5
+Thẻ bị lag ko quẹt dc,FRAUD_REPORT,aug_2,Thẻ bị lag ko quẹt dc,4
+"Ngom qua, chuyen tien bi treo",TRANSACTION,aug_1,"Ngom qua, chuyen tien bi treo",2
+"Lai suat tiet kiem co uu đai cho sinh vien khong, huhu",LOAN_SAVING,aug_2,"Lai suat tiet kiem co uu đai cho sinh vien khong, huhu",3
+"Bực quá, không tìm thấy thông tin giờ làm việc",OTHERS,seed,"Bực quá, không tìm thấy thông tin giờ làm việc",5
+"Add oi, the tk bi loi, can đoi moi",CARD_ISSUE,aug_2,"Add oi, the tk bi loi, can đoi moi",0
+"Thẻ bị block, ko giao dịch dc",TRANSACTION,seed,"Thẻ bị block, ko giao dịch dc",2
+"Tài khoản bị khóa, mở lại giúp add",APP_LOGIN,seed,"Tài khoản bị khóa, mở lại giúp add",1
+"Add oi, sao the lai bi tru tien ma ko co ly do",TRANSACTION,aug_1,"Add oi, sao the lai bi tru tien ma ko co ly do",2
+Lãi suất tiết kiệm có thay đổi thường xuyên không?,LOAN_SAVING,seed,Lãi suất tiết kiệm có thay đổi thường xuyên không?,3
+Lỗi gì mà mã OTP ko gửi được,APP_LOGIN,seed,Lỗi gì mà mã OTP ko gửi được,1
+"Tìm atm gần nhất cho tớ, đang cần chuyển money",OTHERS,aug_1,"Tìm atm gần nhất cho tớ, đang cần chuyển money",5
+"Tk sao kê lỗi, làm lại thế nào huhu",LOAN_SAVING,seed,"Tk sao kê lỗi, làm lại thế nào huhu",3
+"Alo, the cua to bi toang, can ho tro",CARD_ISSUE,aug_1,"Alo, the cua to bi toang, can ho tro",0
+"Máy mới, tải app bank về nhưng ko vào dc",APP_LOGIN,seed,"Máy mới, tải app bank về nhưng ko vào dc",1
+"Gấp lắm, cho hỏi tỷ giá đô la Canada hiện giờ",OTHERS,seed,"Gấp lắm, cho hỏi tỷ giá đô la Canada hiện giờ",5
+"The tin dung bi lo thong tin, hu luon",FRAUD_REPORT,aug_1,"The tin dung bi lo thong tin, hu luon",4
+Thẻ bị ngỏm k lấy dc tiền,CARD_ISSUE,aug_2,Thẻ bị ngỏm k lấy dc tiền,0
+"FaceID trên app lỗi quá, bực quá huhu",APP_LOGIN,seed,"FaceID trên app lỗi quá, bực quá huhu",1
+"Gui tiet kiem online đuoc khong, k dc gui truc tiep?",LOAN_SAVING,aug_2,"Gui tiet kiem online đuoc khong, k dc gui truc tiep?",3
+"Tk bi van đe, ko dc vao",FRAUD_REPORT,aug_1,"Tk bi van đe, ko dc vao",4
+"Alo ad ơi, cần tìm atm gần nhất để kiểm tra số dư",OTHERS,seed,"Alo ad ơi, cần tìm atm gần nhất để kiểm tra số dư",5
+"Thẻ tk chưa về, cần gấp lắm để đi công tác",CARD_ISSUE,seed,"Thẻ tk chưa về, cần gấp lắm để đi công tác",0
+Vay tín chấp qua lương có ưu đãi gì ko?,LOAN_SAVING,seed,Vay tín chấp qua lương có ưu đãi gì ko?,3
+Tk bị lag mất lúa ko dc,FRAUD_REPORT,aug_2,Tk bị lag mất lúa ko dc,4
+E can đuoc ho tro ve viec gia danh cong an goi đien,FRAUD_REPORT,aug_1,E can đuoc ho tro ve viec gia danh cong an goi đien,4
+"Tk của e bị trừ money nhưng người nhận chưa có tiền, ko ăn",TRANSACTION,aug_1,"Tk của e bị trừ money nhưng người nhận chưa có tiền, ko ăn",2
+"Alo ad oi, the Visa no ko an",OTHERS,aug_2,"Alo ad oi, the Visa no ko an",5
+"Lua đao qua mang, toang toan bo tk",FRAUD_REPORT,aug_1,"Lua đao qua mang, toang toan bo tk",4
+"Alo ad oi, moi đoi đien thoai nhung đang nhap lai app ko đuoc",APP_LOGIN,aug_1,"Alo ad oi, moi đoi đien thoai nhung đang nhap lai app ko đuoc",1
+"lag tk, k dc nhận mã OTP, giải quyết j",APP_LOGIN,aug_1,"lag tk, k dc nhận mã OTP, giải quyết j",1
+"Tk sao ke loi, lam lai the nao huhu",LOAN_SAVING,aug_1,"Tk sao ke loi, lam lai the nao huhu",3
+"Toang hết rồi, quảng cáo bảo hiểm không ngừng",OTHERS,seed,"Toang hết rồi, quảng cáo bảo hiểm không ngừng",5
+"Thẻ bị khóa, mk bị lỗi, cần hỗ trợ gấp",CARD_ISSUE,seed,"Thẻ bị khóa, mk bị lỗi, cần hỗ trợ gấp",0
+"Add atm nao gan đay, atm nha to bi toang",OTHERS,aug_2,"Add atm nao gan đay, atm nha to bi toang",5
+"Add ơi, tk bị lỗi, k dc nhận mã OTP",APP_LOGIN,seed,"Add ơi, tk bị lỗi, k dc nhận mã OTP",1
+"Loi chip the, ko quet dc, sua dc khong?",FRAUD_REPORT,aug_2,"Loi chip the, ko quet dc, sua dc khong?",4
+"Tỷ giá đô la canada hôm nay bao nhiêu, ad cho mình biết",OTHERS,seed,"Tỷ giá đô la canada hôm nay bao nhiêu, ad cho mình biết",5
+"Tk của người nhận bị block, chuyển tiền ko vô",TRANSACTION,seed,"Tk của người nhận bị block, chuyển tiền ko vô",2
+"Tự nhiên bị trừ lúa lạ trong tk, hư quá ad ơi",FRAUD_REPORT,aug_1,"Tự nhiên bị trừ lúa lạ trong tk, hư quá ad ơi",4
+"the tk bi hu ad oi, sao ko dc",OTHERS,aug_1,"the tk bi hu ad oi, sao ko dc",5
+"Sao FaceID ko nhan dien đuoc, alo ad oi",APP_LOGIN,aug_2,"Sao FaceID ko nhan dien đuoc, alo ad oi",1
+"Hỗ trợ giúp, chi nhánh mở cửa đến mấy giờ",OTHERS,seed,"Hỗ trợ giúp, chi nhánh mở cửa đến mấy giờ",5
+"Tự nhiên chuyển tiền ko dc, lỗi chip thẻ hay sao",TRANSACTION,seed,"Tự nhiên chuyển tiền ko dc, lỗi chip thẻ hay sao",2
+Cứ thấy cái link lạ nó làm cho tk mất money huhu,FRAUD_REPORT,aug_1,Cứ thấy cái link lạ nó làm cho tk mất money huhu,4
+"Tk bi hack, alo ad oi!",FRAUD_REPORT,aug_1,"Tk bi hack, alo ad oi!",4
+"The atm bi loi, nhap ma pin ko dc, buc qua",CARD_ISSUE,aug_1,"The atm bi loi, nhap ma pin ko dc, buc qua",0
+"Tu nhien ko đang nhap dc, đoi đien thoai moi",APP_LOGIN,aug_2,"Tu nhien ko đang nhap dc, đoi đien thoai moi",1
+card atm lag cần hỗ trợ gấp,CARD_ISSUE,aug_2,card atm lag cần hỗ trợ gấp,0
+"Hoi ad, co nguoi goi đien gia danh cong an, yeu cau toi cung cap thong tin tk",FRAUD_REPORT,aug_2,"Hoi ad, co nguoi goi đien gia danh cong an, yeu cau toi cung cap thong tin tk",4
+"Goi đien spam bao hiem lien tuc, buc qua alo ad oi",OTHERS,aug_2,"Goi đien spam bao hiem lien tuc, buc qua alo ad oi",5
+"Tk bị trừ lúa mà ko biết lý do, add ơi giải thích giùm",OTHERS,aug_2,"Tk bị trừ lúa mà ko biết lý do, add ơi giải thích giùm",5
+"Alo,thẻ_bị_lỗi_ko_dc_sử_dụng_gấp_lắm_tôicần_hỗ_trợ",CARD_ISSUE,seed,"Alo,thẻ_bị_lỗi_ko_dc_sử_dụng_gấp_lắm_tôicần_hỗ_trợ",0
+"Add oi, can sao ke luong 3 thang đe đi du hoc, giup minh nhe",LOAN_SAVING,aug_2,"Add oi, can sao ke luong 3 thang đe đi du hoc, giup minh nhe",3
+"Thẻ bị atm nuốt, cần đổi tk mới dc không ad?",CARD_ISSUE,seed,"Thẻ bị atm nuốt, cần đổi tk mới dc không ad?",0
+Sao kê lương 3 tháng làm sao dc?,LOAN_SAVING,seed,Sao kê lương 3 tháng làm sao dc?,3
+"Alo, ho tro khoan vay qua luong ra sao?",LOAN_SAVING,aug_1,"Alo, ho tro khoan vay qua luong ra sao?",3
+"Huhu, người nhận báo chưa có money kiểm tra giúp vs",TRANSACTION,aug_1,"Huhu, người nhận báo chưa có money kiểm tra giúp vs",2
+"Thẻ atm ko ăn, làm sao lấy lúa bây giờ?",TRANSACTION,aug_2,"Thẻ atm ko ăn, làm sao lấy lúa bây giờ?",2
+"Alo, cần hỗ trợ về lãi suất gửi tiết kiệm gấp!",LOAN_SAVING,seed,"Alo, cần hỗ trợ về lãi suất gửi tiết kiệm gấp!",3
+Loi gi ma bi mat tien,FRAUD_REPORT,aug_1,Loi gi ma bi mat tien,4
+"Tk ngan hang bi van đe, FaceID ko an, giup vs",APP_LOGIN,aug_2,"Tk ngan hang bi van đe, FaceID ko an, giup vs",1
+"Tk tiet kiem cua tui bi khoa vi nhap sai mat khau, mo lai the nao?",LOAN_SAVING,aug_1,"Tk tiet kiem cua tui bi khoa vi nhap sai mat khau, mo lai the nao?",3
+Lãi suất gửi tiết kiệm hiện tại là bao nhiêu?,LOAN_SAVING,seed,Lãi suất gửi tiết kiệm hiện tại là bao nhiêu?,3
+"Thẻ bị toang, ko ăn dc, cần giúp vs",CARD_ISSUE,seed,"Thẻ bị toang, ko ăn dc, cần giúp vs",0
+"Tk bị khóa, lỗi gì thế này, mở lại dc ko",APP_LOGIN,aug_1,"Tk bị khóa, lỗi gì thế này, mở lại dc ko",1
+"The chip bi mon, ko dc quet, tim cach sua",CARD_ISSUE,aug_2,"The chip bi mon, ko dc quet, tim cach sua",0
+"Alo, thẻ atm bị hack, cần hỗ trợ",OTHERS,seed,"Alo, thẻ atm bị hack, cần hỗ trợ",5
+Vay tin chap đe kinh doanh dc khong?,LOAN_SAVING,aug_2,Vay tin chap đe kinh doanh dc khong?,3
+Toican_the_moi_lam_sao_vi_the_cu_hu_lam_ko_dc,CARD_ISSUE,aug_2,Toican_the_moi_lam_sao_vi_the_cu_hu_lam_ko_dc,0
+"huhu, tk bị ko hoạt động, cần hỗ trợ gấp",OTHERS,seed,"huhu, tk bị ko hoạt động, cần hỗ trợ gấp",5
+"Tự nhiên bị trừ tiền lạ trong tk, hư quá ad ơi",FRAUD_REPORT,seed,"Tự nhiên bị trừ tiền lạ trong tk, hư quá ad ơi",4
+"E cần hỗ trợ, chuyển money nhưng người nhận chưa nhận dc",TRANSACTION,aug_1,"E cần hỗ trợ, chuyển money nhưng người nhận chưa nhận dc",2
+"Lỡ làm gì, tk bị lỗi",FRAUD_REPORT,seed,"Lỡ làm gì, tk bị lỗi",4
+"The atm bi ngom, buc qua",CARD_ISSUE,aug_2,"The atm bi ngom, buc qua",0
+"card bị hư ko sử dụng dc, gửi lại cho e nhé",CARD_ISSUE,aug_2,"card bị hư ko sử dụng dc, gửi lại cho e nhé",0
+"Mat tien oan, can giup đo",FRAUD_REPORT,aug_1,"Mat tien oan, can giup đo",4
+"Lam sao lay lai tien, buc qua!",FRAUD_REPORT,aug_1,"Lam sao lay lai tien, buc qua!",4
+Gửi sao kê lương 3 tháng qua email dc hong ad?,LOAN_SAVING,aug_1,Gửi sao kê lương 3 tháng qua email dc hong ad?,3
+"Alo ad, giờ làm việc của chi nhánh ACB?",OTHERS,seed,"Alo ad, giờ làm việc của chi nhánh ACB?",5
+"Ko dc lấy tiền, thẻ bị lỗi chip",CARD_ISSUE,seed,"Ko dc lấy tiền, thẻ bị lỗi chip",0
+"Huhu, vua an vao link nao đo bay gio so l失 tien",FRAUD_REPORT,aug_1,"Huhu, vua an vao link nao đo bay gio so l失 tien",4
+"Tk bị ngỏm, chuyển money cho mẹ chưa vào",TRANSACTION,aug_2,"Tk bị ngỏm, chuyển money cho mẹ chưa vào",2
+"Toang rồi, ko có mã OTP, dc hỗ trợ không",APP_LOGIN,seed,"Toang rồi, ko có mã OTP, dc hỗ trợ không",1
+"Ngỏm quá, sao lại trừ money hong lý do",FRAUD_REPORT,aug_1,"Ngỏm quá, sao lại trừ money hong lý do",4
+"Alo, the atm bi k dc, can giup vs",OTHERS,aug_2,"Alo, the atm bi k dc, can giup vs",5
+"Thẻ bị hư, cần thay thế mới gấp",CARD_ISSUE,seed,"Thẻ bị hư, cần thay thế mới gấp",0
+"Bi tru phi giao dich ma ko ro ly do, giai thich gium",TRANSACTION,aug_1,"Bi tru phi giao dich ma ko ro ly do, giai thich gium",2
+"Tải lại app ngân hàng, nó vẫn lag",APP_LOGIN,aug_2,"Tải lại app ngân hàng, nó vẫn lag",1
+"card mất, cần làm lại card mới nhanh",OTHERS,aug_1,"card mất, cần làm lại card mới nhanh",5
+"FaceID nó ko ăn, mở app ngân hàng ko đc bực quá",APP_LOGIN,aug_1,"FaceID nó ko ăn, mở app ngân hàng ko đc bực quá",1
+"Alo add ơi, card tín dụng bị lộ, tui cần giúp đỡ",FRAUD_REPORT,aug_2,"Alo add ơi, card tín dụng bị lộ, tui cần giúp đỡ",4
+"Alo, gui tien cho ban chua vao, vs loi j",TRANSACTION,aug_2,"Alo, gui tien cho ban chua vao, vs loi j",2
+"Sao ko nhận đc mã OTP, hỗ trợ ad ơi",APP_LOGIN,seed,"Sao ko nhận đc mã OTP, hỗ trợ ad ơi",1
+Mất card cần hỗ trợ ngay alo,CARD_ISSUE,aug_2,Mất card cần hỗ trợ ngay alo,0
+"Phí giao dịch quá đắt, cần giảm giá nhé",TRANSACTION,seed,"Phí giao dịch quá đắt, cần giảm giá nhé",2
+"lỏ card rồi, cần hỗ trợ gấp",CARD_ISSUE,aug_1,"lỏ card rồi, cần hỗ trợ gấp",0
+Mất tiền vì lỡ ấn vào link lạ hỗ trợ gấp,FRAUD_REPORT,seed,Mất tiền vì lỡ ấn vào link lạ hỗ trợ gấp,4
+"card atm bị lỗi, ko rút dc xèng hỗ trợ với",FRAUD_REPORT,aug_2,"card atm bị lỗi, ko rút dc xèng hỗ trợ với",4
+"Thẻ của tôi bị từ chối, nguyên nhân gì",OTHERS,seed,"Thẻ của tôi bị từ chối, nguyên nhân gì",5
+"Chuyển tiền bị treo, vs dc giúp mik",TRANSACTION,seed,"Chuyển tiền bị treo, vs dc giúp mik",2
+"Hỗ trợ ơi, chi nhánh gần nhà giờ làm việc đến mấy giờ",OTHERS,seed,"Hỗ trợ ơi, chi nhánh gần nhà giờ làm việc đến mấy giờ",5
+Lương 5tr dc vay bao nhiêu?,LOAN_SAVING,seed,Lương 5tr dc vay bao nhiêu?,3
+"Huhu, mình chuyển tiền mà ko thấy đến, ngỏm thế này dc?",TRANSACTION,seed,"Huhu, mình chuyển tiền mà ko thấy đến, ngỏm thế này dc?",2
+E cần chuyển tiền nhưng người nhận báo chưa có xèng alo ad ơi,TRANSACTION,aug_1,E cần chuyển tiền nhưng người nhận báo chưa có xèng alo ad ơi,2
+Gửi tiết kiệm ngân hàng có lãi suất cao k,LOAN_SAVING,aug_1,Gửi tiết kiệm ngân hàng có lãi suất cao k,3
+"Thẻ atm ko rút tiền, bực quá",OTHERS,seed,"Thẻ atm ko rút tiền, bực quá",5
+"Thẻ atm bị khóa vì nhập sai, ko ăn dc",CARD_ISSUE,seed,"Thẻ atm bị khóa vì nhập sai, ko ăn dc",0
+Hoi thu tuc vay tin chap qua luong voi,LOAN_SAVING,aug_1,Hoi thu tuc vay tin chap qua luong voi,3
+"card ngân hàng bị lỗi, k dc",OTHERS,aug_1,"card ngân hàng bị lỗi, k dc",5
+"Ko hieu sao lai bi mat tien, ho tro vs",FRAUD_REPORT,aug_1,"Ko hieu sao lai bi mat tien, ho tro vs",4
+"Tk cua to ko vao đc, loi ma OTP, buc qua",APP_LOGIN,aug_1,"Tk cua to ko vao đc, loi ma OTP, buc qua",1
+Tat toan so tiet kiem online co can đen ngan hang ko?,LOAN_SAVING,aug_1,Tat toan so tiet kiem online co can đen ngan hang ko?,3
+"Tk bi loi, ko nhan đc ma otp buc qua",APP_LOGIN,aug_2,"Tk bi loi, ko nhan đc ma otp buc qua",1
+Lam the nao đe biet minh dc vay bao nhieu?,LOAN_SAVING,aug_2,Lam the nao đe biet minh dc vay bao nhieu?,3
+"Bức quá, vay tín chấp qua lương bị lỗi!",LOAN_SAVING,seed,"Bức quá, vay tín chấp qua lương bị lỗi!",3
+"Vay tin chap qua luong, lai suat the nao?",LOAN_SAVING,aug_1,"Vay tin chap qua luong, lai suat the nao?",3
+"card mới chưa về, cần gấp lắm",CARD_ISSUE,aug_1,"card mới chưa về, cần gấp lắm",0
+"Tk bị ngỏm, chuyển money bị trả lại",TRANSACTION,aug_1,"Tk bị ngỏm, chuyển money bị trả lại",2
+"Rút tiền atm bị lỗi, ko ăn tiền",TRANSACTION,seed,"Rút tiền atm bị lỗi, ko ăn tiền",2
+"Hỗ trợ ơi, cần biết giờ làm việc chi nhánh gần nhà",OTHERS,seed,"Hỗ trợ ơi, cần biết giờ làm việc chi nhánh gần nhà",5
+Thẻ mới issued sao không dùng dc,OTHERS,seed,Thẻ mới issued sao không dùng dc,5
+"The atm bi hu, can lam lai nhanh",OTHERS,aug_1,"The atm bi hu, can lam lai nhanh",5
+"Ngỏm quá, chuyển tiền bị treo",TRANSACTION,seed,"Ngỏm quá, chuyển tiền bị treo",2
+"card tk bị khóa, ko biết làm sao",TRANSACTION,aug_2,"card tk bị khóa, ko biết làm sao",2
+Lỡ ấn link lạ sợ mất tiền quá,FRAUD_REPORT,seed,Lỡ ấn link lạ sợ mất tiền quá,4
+"Alo, thẻ atm bị lỗi, quên mã pin nữa",CARD_ISSUE,seed,"Alo, thẻ atm bị lỗi, quên mã pin nữa",0
+"Lại bị mất tiền không, hỗ trợ giúp với",FRAUD_REPORT,seed,"Lại bị mất tiền không, hỗ trợ giúp với",4
+"The bi khoa, mo lai the nao",CARD_ISSUE,aug_1,"The bi khoa, mo lai the nao",0
+"The atm loi, ko rut tien dc, buc qua",CARD_ISSUE,aug_2,"The atm loi, ko rut tien dc, buc qua",0
+"lag thẻ tín dụng, cần hỗ trợ gấp",FRAUD_REPORT,aug_2,"lag thẻ tín dụng, cần hỗ trợ gấp",4
+"Tk bị hư, chuyển tiền ko dc",TRANSACTION,seed,"Tk bị hư, chuyển tiền ko dc",2
+"Nạp money điện thoại bị lỗi, toang",TRANSACTION,aug_1,"Nạp money điện thoại bị lỗi, toang",2
+"Hỏi ad ơi, gửi tiết kiệm có rút dc xèng trước hạn ko?",LOAN_SAVING,aug_1,"Hỏi ad ơi, gửi tiết kiệm có rút dc xèng trước hạn ko?",3
+"FaceID tren app ngan hang bi hu, lam j đc?",APP_LOGIN,aug_2,"FaceID tren app ngan hang bi hu, lam j đc?",1
+"Ngỏm mất mk, cần hỗ trợ gấp lắm ơi",APP_LOGIN,seed,"Ngỏm mất mk, cần hỗ trợ gấp lắm ơi",1
+"Alo, cần sao kê lương gần nhất, gấp lắm",LOAN_SAVING,seed,"Alo, cần sao kê lương gần nhất, gấp lắm",3
+Can giao dich gap ma tk online loi,TRANSACTION,aug_2,Can giao dich gap ma tk online loi,2
+"Loi FaceID, can đuoc ho tro ngay ad",APP_LOGIN,aug_1,"Loi FaceID, can đuoc ho tro ngay ad",1
+"Alo ad ơi, mã OTP ko ăn",APP_LOGIN,seed,"Alo ad ơi, mã OTP ko ăn",1
+"Lỗi tk, chuyển tiền qua ứng dụng ngân hàng ko dc",TRANSACTION,seed,"Lỗi tk, chuyển tiền qua ứng dụng ngân hàng ko dc",2
+"Thẻ của tao ko đọc dc, lỗi chip",CARD_ISSUE,seed,"Thẻ của tao ko đọc dc, lỗi chip",0
+"Alo, lãi suất tiết kiệm có thay đổi hàng tháng ko?",LOAN_SAVING,seed,"Alo, lãi suất tiết kiệm có thay đổi hàng tháng ko?",3
+"Tự nhiên FaceID bị lỗi, cần đổi tk mới",APP_LOGIN,seed,"Tự nhiên FaceID bị lỗi, cần đổi tk mới",1
+"Bực quá, tỷ giá đô la sao lại lên xuống liên tục",OTHERS,seed,"Bực quá, tỷ giá đô la sao lại lên xuống liên tục",5
+Bị hack mất lúa oan uổng bực quá,FRAUD_REPORT,aug_2,Bị hack mất lúa oan uổng bực quá,4
+Thẻ bị bug alo hỗ trợ giúp với,TRANSACTION,aug_2,Thẻ bị bug alo hỗ trợ giúp với,2
+"Thẻ vs bị lỗi, làm sao để sửa",CARD_ISSUE,seed,"Thẻ vs bị lỗi, làm sao để sửa",0
+"Thẻ atm bị k dc quẹt, bực quá",OTHERS,seed,"Thẻ atm bị k dc quẹt, bực quá",5
+"Tk bi khoa khong biet lam sao, k dc",FRAUD_REPORT,aug_2,"Tk bi khoa khong biet lam sao, k dc",4
+"Hu roi, tai khoan bi mat tien khong hieu ly do",FRAUD_REPORT,aug_1,"Hu roi, tai khoan bi mat tien khong hieu ly do",4
+"Gap lam, chuyen tien cho con an hoc chua vao",TRANSACTION,aug_1,"Gap lam, chuyen tien cho con an hoc chua vao",2
+Tk bi mat tien ko dc add giup,FRAUD_REPORT,aug_2,Tk bi mat tien ko dc add giup,4
+"Alo, app ngân hàng bug faceid, fix giúp vs",APP_LOGIN,aug_1,"Alo, app ngân hàng bug faceid, fix giúp vs",1
+"card của mình chip ko ăn, làm sao bây giờ",CARD_ISSUE,aug_1,"card của mình chip ko ăn, làm sao bây giờ",0
+Tai app lai tren đien thoai moi nhung đang nhap lai ko đuoc,APP_LOGIN,aug_2,Tai app lai tren đien thoai moi nhung đang nhap lai ko đuoc,1
+Mo email thay link la an vao gio lo so mat tien,FRAUD_REPORT,aug_2,Mo email thay link la an vao gio lo so mat tien,4
+"bug rồi, làm sao vay dc",LOAN_SAVING,aug_1,"bug rồi, làm sao vay dc",3
+"Tự nhiên thẻ bị k dc sử dụng, tại sao vs",OTHERS,seed,"Tự nhiên thẻ bị k dc sử dụng, tại sao vs",5
+Gui tiet kiem o đay co an toan khong?,LOAN_SAVING,aug_1,Gui tiet kiem o đay co an toan khong?,3
+"Tk lỗi, ko nhận đc mã OTP",APP_LOGIN,seed,"Tk lỗi, ko nhận đc mã OTP",1
+Làm sao để sao kê lương nhanh chóng?,LOAN_SAVING,seed,Làm sao để sao kê lương nhanh chóng?,3
+Add atm gần nhất với vị trí hiện tại của mk,OTHERS,seed,Add atm gần nhất với vị trí hiện tại của mk,5
+"Thẻ của mình bị lỗi, ko dc rút tiền",OTHERS,seed,"Thẻ của mình bị lỗi, ko dc rút tiền",5
+"Huhu, vừa chuyển tiền thì bị lỗi, bực quá",TRANSACTION,seed,"Huhu, vừa chuyển tiền thì bị lỗi, bực quá",2
+"card bị lag k dc sử dụng, alo hỗ trợ",CARD_ISSUE,aug_1,"card bị lag k dc sử dụng, alo hỗ trợ",0
+"Loi he thong, ko nang han muc dc",LOAN_SAVING,aug_2,"Loi he thong, ko nang han muc dc",3
+Đổi sang ngân hàng khác dc hỗ trợ vay tín chấp ko?,LOAN_SAVING,seed,Đổi sang ngân hàng khác dc hỗ trợ vay tín chấp ko?,3
+"Thẻ bị bong chip, ko sử dụng được",CARD_ISSUE,seed,"Thẻ bị bong chip, ko sử dụng được",0
+Lỗi thẻ cần giúp hỗ trợ gấp lắm,CARD_ISSUE,seed,Lỗi thẻ cần giúp hỗ trợ gấp lắm,0
+"card của tui bị lầm, bực quá",FRAUD_REPORT,aug_2,"card của tui bị lầm, bực quá",4
+"Huhu, thẻ atm bị k dc rút tiền",OTHERS,seed,"Huhu, thẻ atm bị k dc rút tiền",5
+"The bi loi ky thuat, khong hoat đong dc, huhu",CARD_ISSUE,aug_2,"The bi loi ky thuat, khong hoat đong dc, huhu",0
+"OTP không đến, em cần hỗ trợ gấp lắm ơi",APP_LOGIN,seed,"OTP không đến, em cần hỗ trợ gấp lắm ơi",1
+"Sao kê lương ko ra, lỏ kỹ thuật à?",LOAN_SAVING,aug_2,"Sao kê lương ko ra, lỏ kỹ thuật à?",3
+"Ngân hàng lag app, cần hỗ trợ gấp",APP_LOGIN,aug_1,"Ngân hàng lag app, cần hỗ trợ gấp",1
+"card bị toang, ko ăn dc, cần giúp vs",CARD_ISSUE,aug_2,"card bị toang, ko ăn dc, cần giúp vs",0
+"Phí giao dịch quá đắt, ko ăn dc",TRANSACTION,seed,"Phí giao dịch quá đắt, ko ăn dc",2
+"Chuyen tien cho nguoi than, ho bao chua nhan dc, can giup",TRANSACTION,aug_1,"Chuyen tien cho nguoi than, ho bao chua nhan dc, can giup",2
+"The bi phong toa vi gia cong an, buc qua",FRAUD_REPORT,aug_2,"The bi phong toa vi gia cong an, buc qua",4
+"The tk bi loi, giao dich ko dc",TRANSACTION,aug_2,"The tk bi loi, giao dich ko dc",2
+"Ko an thua, the moi bi hong",CARD_ISSUE,aug_2,"Ko an thua, the moi bi hong",0
+"Tự nhiên bị khóa tk, mở lại nhanh lên",APP_LOGIN,seed,"Tự nhiên bị khóa tk, mở lại nhanh lên",1
+"Tk bị hư, gửi tiết kiệm online bằng tk khác dc ko?",LOAN_SAVING,seed,"Tk bị hư, gửi tiết kiệm online bằng tk khác dc ko?",3
+"Toang roài, mất lúa oan",FRAUD_REPORT,aug_1,"Toang roài, mất lúa oan",4
+"Nguoi nhan bao chua co tien, buc qua",TRANSACTION,aug_1,"Nguoi nhan bao chua co tien, buc qua",2
+"Loi the, can ho tro ngay",CARD_ISSUE,aug_1,"Loi the, can ho tro ngay",0
+Thẻ atm bị hack DC làm j đc,FRAUD_REPORT,seed,Thẻ atm bị hack DC làm j đc,4
+"Goi đien quang cao bao hiem lam phien qua, ko dc ad oi",OTHERS,aug_2,"Goi đien quang cao bao hiem lam phien qua, ko dc ad oi",5
+"Alo ad ơi, hư cái sao kê lương rồi, làm j?",LOAN_SAVING,seed,"Alo ad ơi, hư cái sao kê lương rồi, làm j?",3
+"Ngỏm quá, sao kê lương 3 tháng trên app bị lỗi, làm sao dc?",LOAN_SAVING,seed,"Ngỏm quá, sao kê lương 3 tháng trên app bị lỗi, làm sao dc?",3
+"The ko quet dc nua, hu chip roi add oi",CARD_ISSUE,aug_1,"The ko quet dc nua, hu chip roi add oi",0
+"Nạp xèng ko vào, ngỏm quá!",FRAUD_REPORT,aug_2,"Nạp xèng ko vào, ngỏm quá!",4
+"Loi nhap sai mk the, bay gio ko vao dc",CARD_ISSUE,aug_2,"Loi nhap sai mk the, bay gio ko vao dc",0
+"Alo, atm gần nhà tớ bị ngỏm, cần tìm atm khác",OTHERS,seed,"Alo, atm gần nhà tớ bị ngỏm, cần tìm atm khác",5
+"Alo ad ơi, cho hỏi lãi suất gửi tiết kiệm là bao nhiêu?",LOAN_SAVING,seed,"Alo ad ơi, cho hỏi lãi suất gửi tiết kiệm là bao nhiêu?",3
+"Add oi, gio lam viec cua ngan hang la may gio?",OTHERS,aug_1,"Add oi, gio lam viec cua ngan hang la may gio?",5
+"Thẻ không hoạt động, vấn đề với chip",CARD_ISSUE,seed,"Thẻ không hoạt động, vấn đề với chip",0
+"Tk của tớ ko vào đc, bug mã OTP, bực quá",APP_LOGIN,aug_2,"Tk của tớ ko vào đc, bug mã OTP, bực quá",1
+Tui muốn tất toán sổ tiết kiệm nhưng hệ thống yêu cầu xác thực lại,LOAN_SAVING,seed,Tui muốn tất toán sổ tiết kiệm nhưng hệ thống yêu cầu xác thực lại,3
+"K dc, thẻ mới chưa nhận",CARD_ISSUE,seed,"K dc, thẻ mới chưa nhận",0
+"Hư hỏng vì giả danh công an, k ăn",FRAUD_REPORT,seed,"Hư hỏng vì giả danh công an, k ăn",4
+"Loi FaceID, can ho tro gap, k dc đang nhap",APP_LOGIN,aug_2,"Loi FaceID, can ho tro gap, k dc đang nhap",1
+"Thẻ atm bị hỏng, cần tìm atm để đổi",OTHERS,seed,"Thẻ atm bị hỏng, cần tìm atm để đổi",5
+"Add ơi, chuyển lúa cho em chưa vào, giúp đỡ",TRANSACTION,aug_1,"Add ơi, chuyển lúa cho em chưa vào, giúp đỡ",2

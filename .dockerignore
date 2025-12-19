@@ -1,0 +1,25 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints
+
+# Large dirs not needed for backend build context
+# (Tuy nhiên nếu bạn build frontend sau này thì có thể cần điều chỉnh file này hoặc dùng file .dockerignore riêng)
+# Ở đây ta tối ưu cho backend build
+data/
+training_pipeline/
+frontend/
+models/raw_pytorch
+models/trunggian
