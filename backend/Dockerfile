@@ -18,7 +18,7 @@ ENV PYTHONUNBUFFERED=1 \
 COPY backend/requirements.txt .
 
 # Copy execstack từ stage builder vào final stage
-COPY --from=builder /usr/sbin/execstack /usr/bin/execstack
+COPY --from=builder /usr/bin/execstack /usr/bin/execstack
 
 # Gộp lệnh RUN để giảm layer
 # QUAN TRỌNG: Cần libelf1 để chạy execstack
