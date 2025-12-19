@@ -1,89 +1,39 @@
-from pathlib import Path
-import numpy as np
-import onnxruntime as ort
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from tokenizers import Tokenizer
-import json
+FROM python:3.9-slim
 
-ROOT = Path(__file__).resolve().parents[1]
-MODEL_DIR = ROOT / "models" / "production"
+WORKDIR /app
 
-class PredictRequest(BaseModel):
-    text: str
+# 1. Cài đặt hệ thống và dọn dẹp layer ngay lập tức để tiết kiệm dung lượng
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libgomp1 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-app = FastAPI()
+# 2. Cài đặt thư viện và xóa cache pip trong cùng 1 RUN
+COPY backend/requirements.txt .
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt && \
+    rm -rf /root/.cache/pip
 
-# Biến toàn cục
-TOKENIZER = None
-SESSION = None
-ID2LABEL = {}
+# 3. Tạo thư mục đích
+RUN mkdir -p models/production
 
-def init_model():
-    global TOKENIZER, SESSION, ID2LABEL
-    try:
-        # 1. Load Tokenizer (Sử dụng trực tiếp file json để cực nhẹ)
-        TOKENIZER = Tokenizer.from_file(str(MODEL_DIR / "tokenizer.json"))
-        TOKENIZER.enable_truncation(max_length=128)
-        TOKENIZER.enable_padding(length=128)
+# 4. CHỈ copy những gì cần thiết, tránh dùng dấu / ở cuối bừa bãi
+# Copy cấu hình
+COPY models/production/tokenizer.json models/production/config.json models/production/model_main.onnx ./models/production/
+# Copy trọng số (Dùng wildcard để chỉ lấy file weight, tránh lấy file rác khác)
+COPY models/production/*.weight_quantized models/production/*-*-*-*-* ./models/production/ 2>/dev/null || true
 
-        # 2. Load Label Map tối giản
-        config_path = MODEL_DIR / "config.json"
-        if config_path.exists():
-            with open(config_path, "r") as f:
-                cfg = json.load(f)
-                labels = cfg.get("id2label") or cfg.get("id_to_label")
-                if labels:
-                    ID2LABEL = {int(k): v for k, v in labels.items()}
+# 5. Copy code API
+COPY backend/api.py ./backend/
 
-        # 3. ONNX Runtime - Cấu hình tiết kiệm RAM mức tối đa
-        so = ort.SessionOptions()
-        so.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
-        so.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_BASIC
-        so.intra_op_num_threads = 1
-        so.inter_op_num_threads = 1
-        
-        # Ép giải phóng bộ nhớ ngay lập tức
-        so.add_session_config_entry("session.use_device_allocator_for_initializers", "0")
-        # Tắt Memory Pattern để giảm RAM tĩnh
-        so.enable_mem_pattern = False 
+ENV PORT=10000 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    OMP_NUM_THREADS=1 \
+    MKL_NUM_THREADS=1 \
+    ONNXRUNTIME_EXECUTION_MODE=SEQUENTIAL
 
-        SESSION = ort.InferenceSession(
-            str(MODEL_DIR / "model_quantized.onnx"), 
-            sess_options=so, 
-            providers=["CPUExecutionProvider"]
-        )
-    except Exception:
-        pass
+RUN useradd -m appuser && chown -R appuser:appuser /app
+USER appuser
 
-init_model()
-
-@app.post("/predict")
-def predict(req: PredictRequest):
-    if SESSION is None:
-        raise HTTPException(status_code=503, detail="Model Loading Error")
-    try:
-        encoding = TOKENIZER.encode(req.text)
-        ort_inputs = {
-            "input_ids": np.array([encoding.ids], dtype=np.int64),
-            "attention_mask": np.array([encoding.attention_mask], dtype=np.int64)
-        }
-        
-        # Tự động khớp với input name của model
-        input_names = [i.name for i in SESSION.get_inputs()]
-        if "token_type_ids" in input_names:
-            ort_inputs["token_type_ids"] = np.array([encoding.type_ids], dtype=np.int64)
-
-        logits = SESSION.run(None, ort_inputs)[0]
-        
-        # Softmax tối giản top 1
-        e_x = np.exp(logits - np.max(logits))
-        probs = e_x / e_x.sum()
-        idx = int(np.argmax(probs))
-        
-        return {
-            "label": ID2LABEL.get(idx, str(idx)),
-            "score": round(float(probs[0][idx]), 4)
-        }
-    except Exception:
-        raise HTTPException(status_code=500, detail="Prediction failed")
+CMD ["sh", "-c", "uvicorn backend.api:app --host 0.0.0.0 --port ${PORT} --workers 1 --limit-concurrency 2"]

@@ -1,33 +1,11 @@
-# Git
-.git
-.gitignore
-.gitattributes
-
-# Python & Cache
-**/__pycache__/
+**/__pycache__
 *.pyc
 *.pyo
 *.pyd
-.Python
-env/
-venv/
-.venv/
+.git
 .env
-
-# Jupyter Notebooks
-.ipynb_checkpoints/
-*.ipynb
-
-# Loại bỏ các folder dữ liệu và pipeline nặng
 data/
 training_pipeline/
 frontend/
-
-# Loại bỏ các folder model gốc và trung gian (Chỉ giữ lại models/production)
-models/raw_pytorch/
-models/trunggian/
-
-# Loại bỏ các file log hoặc file rác hệ thống
-*.log
-.DS_Store
-Thumbs.db
+models/onnx_int8/
+.ipynb_checkpoints/
