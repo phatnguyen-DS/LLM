@@ -2,34 +2,29 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-# Gộp cài đặt hệ thống và dọn dẹp ngay để không tốn thêm MB nào
+# 1. Cài đặt thêm 'execstack' để xử lý lỗi Shared Object trên Render
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgomp1 \
+    execstack \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Cài đặt thư viện và xóa cache pip NGAY TRONG CÙNG 1 LỚP
+# 2. Cài đặt thư viện Python
 COPY backend/requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt && \
     rm -rf /root/.cache/pip
 
-# Tạo thư mục và copy file có chọn lọc
+# 3. CHỐT CHẶN LỖI: Tắt cờ executable stack cho onnxruntime
+# Lệnh này giúp fix lỗi ImportError bạn vừa gặp ở trên
+RUN execstack -c /usr/local/lib/python3.9/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.cpython-39-x86_64-linux-gnu.so || true
+
+# 4. Copy dữ liệu (Sử dụng cách copy linh hoạt)
 RUN mkdir -p models/production backend
-
-# Chỉ copy đúng những file cần thiết để chạy
-COPY models/production/tokenizer.json \
-    models/production/config.json \
-    models/production/model_main.onnx \
-    ./models/production/
-
-# Copy các file trọng số rời (nếu có)
-# Thay cho dòng COPY cũ bị lỗi
-COPY models/production/*.weight_quantized ./models/production/
-COPY models/production/*-*-*-*-* ./models/production/
-
+COPY models/production/ ./models/production/
 COPY backend/api.py ./backend/
 
+# 5. Cấu hình môi trường tối ưu cho RAM 512MB
 ENV PORT=10000 \
     PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
