@@ -18,7 +18,7 @@ BASE_DIR = Path.cwd()
 
 # config
 MODEL_NAME = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
-OUTPUT_DIR = f"{BASE_DIR}/models/raw_pytorch"
+OUTPUT_DIR = f"{BASE_DIR}/models/raw_model"
 BATCH_SIZE = 32
 EPOCHS = 5
 LEARNING_RATE = 2e-5
