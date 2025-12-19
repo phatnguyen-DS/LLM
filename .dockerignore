@@ -1,9 +1,10 @@
 # Git
 .git
 .gitignore
+.gitattributes
 
-# Python
-__pycache__
+# Python & Cache
+**/__pycache__/
 *.pyc
 *.pyo
 *.pyd
@@ -11,15 +12,22 @@ __pycache__
 env/
 venv/
 .venv/
+.env
 
-# Jupyter
-.ipynb_checkpoints
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
 
-# Large dirs not needed for backend build context
-# (Tuy nhiên nếu bạn build frontend sau này thì có thể cần điều chỉnh file này hoặc dùng file .dockerignore riêng)
-# Ở đây ta tối ưu cho backend build
+# Loại bỏ các folder dữ liệu và pipeline nặng
 data/
 training_pipeline/
 frontend/
-models/raw_pytorch
-models/trunggian
+
+# Loại bỏ các folder model gốc và trung gian (Chỉ giữ lại models/production)
+models/raw_pytorch/
+models/trunggian/
+
+# Loại bỏ các file log hoặc file rác hệ thống
+*.log
+.DS_Store
+Thumbs.db

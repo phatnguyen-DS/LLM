@@ -6,7 +6,6 @@ from pydantic import BaseModel
 from tokenizers import Tokenizer
 import json
 
-# -- CONFIG --
 ROOT = Path(__file__).resolve().parents[1]
 MODEL_DIR = ROOT / "models" / "production"
 
@@ -15,7 +14,7 @@ class PredictRequest(BaseModel):
 
 app = FastAPI()
 
-# -- GLOBALS --
+# Biến toàn cục
 TOKENIZER = None
 SESSION = None
 ID2LABEL = {}
@@ -23,30 +22,31 @@ ID2LABEL = {}
 def init_model():
     global TOKENIZER, SESSION, ID2LABEL
     try:
-        # 1. Load Tokenizer rút gọn (tokenizer.json)
+        # 1. Load Tokenizer (Sử dụng trực tiếp file json để cực nhẹ)
         TOKENIZER = Tokenizer.from_file(str(MODEL_DIR / "tokenizer.json"))
         TOKENIZER.enable_truncation(max_length=128)
         TOKENIZER.enable_padding(length=128)
 
-        # 2. Load Label Map
+        # 2. Load Label Map tối giản
         config_path = MODEL_DIR / "config.json"
         if config_path.exists():
             with open(config_path, "r") as f:
                 cfg = json.load(f)
-                id2map = cfg.get("id2label") or cfg.get("id_to_label")
-                if id2map:
-                    ID2LABEL = {int(k): v for k, v in id2map.items()}
+                labels = cfg.get("id2label") or cfg.get("id_to_label")
+                if labels:
+                    ID2LABEL = {int(k): v for k, v in labels.items()}
 
-        # 3. Cấu hình ONNX Runtime cực hạn cho RAM 512MB
+        # 3. ONNX Runtime - Cấu hình tiết kiệm RAM mức tối đa
         so = ort.SessionOptions()
-        # Chạy tuần tự để không tốn RAM cho xử lý song song
-        so.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL 
-        # Giảm tối ưu hóa đồ thị xuống mức cơ bản để tránh dùng nhiều RAM lúc load
+        so.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
         so.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_BASIC
         so.intra_op_num_threads = 1
         so.inter_op_num_threads = 1
-        # Tắt bộ nhớ đệm khởi tạo
+        
+        # Ép giải phóng bộ nhớ ngay lập tức
         so.add_session_config_entry("session.use_device_allocator_for_initializers", "0")
+        # Tắt Memory Pattern để giảm RAM tĩnh
+        so.enable_mem_pattern = False 
 
         SESSION = ort.InferenceSession(
             str(MODEL_DIR / "model_quantized.onnx"), 
@@ -62,33 +62,28 @@ init_model()
 def predict(req: PredictRequest):
     if SESSION is None:
         raise HTTPException(status_code=503, detail="Model Loading Error")
-
     try:
-        # Tokenize
         encoding = TOKENIZER.encode(req.text)
-        
-        # Chuẩn bị input
         ort_inputs = {
             "input_ids": np.array([encoding.ids], dtype=np.int64),
             "attention_mask": np.array([encoding.attention_mask], dtype=np.int64)
         }
         
-        # Kiểm tra token_type_ids
-        if "token_type_ids" in [i.name for i in SESSION.get_inputs()]:
+        # Tự động khớp với input name của model
+        input_names = [i.name for i in SESSION.get_inputs()]
+        if "token_type_ids" in input_names:
             ort_inputs["token_type_ids"] = np.array([encoding.type_ids], dtype=np.int64)
 
-        # Inference
         logits = SESSION.run(None, ort_inputs)[0]
         
-        # Softmax tối giản (chỉ lấy top 1)
-        probs = np.exp(logits - np.max(logits))
-        probs /= probs.sum()
-        
+        # Softmax tối giản top 1
+        e_x = np.exp(logits - np.max(logits))
+        probs = e_x / e_x.sum()
         idx = int(np.argmax(probs))
         
         return {
             "label": ID2LABEL.get(idx, str(idx)),
             "score": round(float(probs[0][idx]), 4)
         }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    except Exception:
+        raise HTTPException(status_code=500, detail="Prediction failed")
