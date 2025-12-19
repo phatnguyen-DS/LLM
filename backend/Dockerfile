@@ -1,3 +1,6 @@
+FROM debian:buster-slim as builder
+RUN apt-get update && apt-get install -y --no-install-recommends prelink
+
 FROM python:3.9-slim-bullseye
 
 WORKDIR /app
@@ -10,15 +13,17 @@ ENV PYTHONUNBUFFERED=1 \
 
 COPY backend/requirements.txt .
 
+# Copy execstack từ stage builder vào final stage
+COPY --from=builder /usr/sbin/execstack /usr/bin/execstack
+
 # Gộp lệnh RUN để giảm layer
-# QUAN TRỌNG: Cần prelink để chạy execstack fix lỗi trên Render
+# QUAN TRỌNG: Cần libelf1 để chạy execstack
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends libgomp1 prelink && \
+    apt-get install -y --no-install-recommends libgomp1 libelf1 && \
     pip install -r requirements.txt && \
     # FIX LỖI "cannot enable executable stack" TRÊN RENDER
     execstack -c /usr/local/lib/python3.9/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.cpython-39-x86_64-linux-gnu.so || true && \
-    # Cleanup: Gỡ prelink để giảm dung lượng
-    apt-get remove -y prelink && \
+    # Cleanup
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
