@@ -36,45 +36,70 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update character count
     updateCharCount();
+    
+    // Debug info
+    console.log('Frontend loaded successfully');
+    console.log('API URL:', API_BASE_URL);
 });
 
 // ======== EVENT LISTENERS ========
 function setupEventListeners() {
     // Form submission
-    document.getElementById('classification-form').addEventListener('submit', handleFormSubmit);
+    const form = document.getElementById('classification-form');
+    if (form) {
+        form.addEventListener('submit', handleFormSubmit);
+    } else {
+        console.error('Classification form not found!');
+    }
     
     // Text input changes
-    textInput.addEventListener('input', updateCharCount);
+    if (textInput) {
+        textInput.addEventListener('input', updateCharCount);
+    }
     
     // Example button
-    exampleBtn.addEventListener('click', showExampleText);
+    if (exampleBtn) {
+        exampleBtn.addEventListener('click', showExampleText);
+    }
     
     // New analysis button
-    newAnalysisBtn.addEventListener('click', resetForm);
+    if (newAnalysisBtn) {
+        newAnalysisBtn.addEventListener('click', resetForm);
+    }
 }
 
 // ======== API FUNCTIONS ========
 async function checkApiStatus() {
     try {
+        console.log('Checking API health at:', HEALTH_ENDPOINT);
         const response = await fetch(HEALTH_ENDPOINT);
         const data = await response.json();
         
         if (response.ok && data.status === 'ok') {
-            apiStatus.textContent = 'Online';
-            apiStatus.className = 'badge bg-success';
+            if (apiStatus) {
+                apiStatus.textContent = 'Online';
+                apiStatus.className = 'badge bg-success';
+            }
         } else {
+            if (apiStatus) {
+                apiStatus.textContent = 'Offline';
+                apiStatus.className = 'badge bg-danger';
+            }
+        }
+    } catch (error) {
+        console.error('API Health Check Error:', error);
+        if (apiStatus) {
             apiStatus.textContent = 'Offline';
             apiStatus.className = 'badge bg-danger';
         }
-    } catch (error) {
-        apiStatus.textContent = 'Offline';
-        apiStatus.className = 'badge bg-danger';
-        console.error('API Health Check Error:', error);
     }
 }
 
 async function classifyText(text) {
     try {
+        console.log('Sending classification request to:', API_ENDPOINT);
+        console.log('Text to classify:', text);
+        
         const response = await fetch(API_ENDPOINT, {
             method: 'POST',
             headers: {
@@ -83,11 +108,14 @@ async function classifyText(text) {
             body: JSON.stringify({ text: text })
         });
         
+        console.log('API response status:', response.status);
+        
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         
         const data = await response.json();
+        console.log('API response data:', data);
         return data;
     } catch (error) {
         console.error('Classification Error:', error);
@@ -100,6 +128,11 @@ async function classifyText(text) {
 async function handleFormSubmit(event) {
     event.preventDefault();
     
+    if (!textInput) {
+        console.error('Text input not found!');
+        return;
+    }
+    
     const text = textInput.value.trim();
     
     // Validate input
@@ -108,28 +141,52 @@ async function handleFormSubmit(event) {
         return;
     }
     
+    // Disable button to prevent multiple submissions
+    if (classifyBtn) {
+        classifyBtn.disabled = true;
+        classifyBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Đang xử lý...';
+    }
+    
     // Show loading modal
-    loadingModal.show();
+    if (loadingModal) {
+        loadingModal.show();
+    }
     
     try {
         // Call API
         const result = await classifyText(text);
         
         // Hide loading modal
-        loadingModal.hide();
+        if (loadingModal) {
+            loadingModal.hide();
+        }
         
         // Show results
         displayResults(result);
         
         // Scroll to results
-        resultsSection.scrollIntoView({ behavior: 'smooth' });
+        if (resultsSection) {
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }
     } catch (error) {
         // Hide loading modal
-        loadingModal.hide();
+        if (loadingModal) {
+            loadingModal.hide();
+        }
+        
+        console.error('Form submission error:', error);
+    } finally {
+        // Re-enable button
+        if (classifyBtn) {
+            classifyBtn.disabled = false;
+            classifyBtn.innerHTML = '<i class="fas fa-search me-2"></i>Phân loại';
+        }
     }
 }
 
 function updateCharCount() {
+    if (!textInput || !charCount) return;
+    
     const count = textInput.value.length;
     charCount.textContent = count;
     
@@ -142,6 +199,8 @@ function updateCharCount() {
 }
 
 function showExampleText() {
+    if (!textInput) return;
+    
     // Get random example
     const randomIndex = Math.floor(Math.random() * exampleTexts.length);
     const exampleText = exampleTexts[randomIndex];
@@ -155,14 +214,22 @@ function showExampleText() {
 }
 
 function displayResults(result) {
+    // Check if elements exist
+    if (!predictedClass || !confidenceScore || !confidenceBar) {
+        console.error('Result display elements not found!');
+        return;
+    }
+    
     // Set the results
     predictedClass.textContent = result.label || 'Unknown';
     confidenceScore.textContent = `${(result.score * 100).toFixed(1)}%`;
     confidenceBar.style.width = `${(result.score * 100)}%`;
     
     // Show results section with animation
-    resultsSection.classList.remove('d-none');
-    resultsSection.classList.add('fade-in');
+    if (resultsSection) {
+        resultsSection.classList.remove('d-none');
+        resultsSection.classList.add('fade-in');
+    }
     
     // Set color based on confidence
     if (result.score >= 0.8) {
@@ -172,15 +239,21 @@ function displayResults(result) {
     } else {
         confidenceBar.className = 'progress-bar bg-danger';
     }
+    
+    console.log('Classification result:', result);
 }
 
 function resetForm() {
+    if (!textInput) return;
+    
     // Clear input
     textInput.value = '';
     updateCharCount();
     
     // Hide results section
-    resultsSection.classList.add('d-none');
+    if (resultsSection) {
+        resultsSection.classList.add('d-none');
+    }
     
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -219,13 +292,20 @@ function showError(message) {
     toastContainer.appendChild(toast);
     
     // Show toast
-    const bsToast = new bootstrap.Toast(toast);
-    bsToast.show();
-    
-    // Remove toast when hidden
-    toast.addEventListener('hidden.bs.toast', () => {
-        toast.remove();
-    });
+    if (typeof bootstrap !== 'undefined') {
+        const bsToast = new bootstrap.Toast(toast);
+        bsToast.show();
+        
+        // Remove toast when hidden
+        toast.addEventListener('hidden.bs.toast', () => {
+            toast.remove();
+        });
+    } else {
+        // Fallback if bootstrap is not available
+        setTimeout(() => {
+            toast.remove();
+        }, 5000);
+    }
 }
 
 // ======== CREATE TOAST CONTAINER STYLES ========
@@ -252,3 +332,19 @@ window.addEventListener('unhandledrejection', (event) => {
 
 // ======== PERIODIC API STATUS CHECK ========
 setInterval(checkApiStatus, 30000); // Check every 30 seconds
+
+// ======== DEBUG FUNCTIONS ========
+window.debugAPI = function() {
+    console.log('API Base URL:', API_BASE_URL);
+    console.log('API Endpoint:', API_ENDPOINT);
+    console.log('Health Endpoint:', HEALTH_ENDPOINT);
+    console.log('DOM Elements:');
+    console.log('- Text Input:', !!textInput);
+    console.log('- Char Count:', !!charCount);
+    console.log('- Classify Button:', !!classifyBtn);
+    console.log('- Results Section:', !!resultsSection);
+    console.log('- Predicted Class:', !!predictedClass);
+    console.log('- Confidence Score:', !!confidenceScore);
+    console.log('- Confidence Bar:', !!confidenceBar);
+    console.log('- API Status:', !!apiStatus);
+};

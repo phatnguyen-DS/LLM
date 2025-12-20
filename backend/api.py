@@ -77,7 +77,7 @@ def health():
     return {"status": "ok"} if model else {"status": "error"}
 
 @app.post("/predict")
-def predict(item: Item): # QUAN TRỌNG: Không dùng 'async' để tránh treo
+def predict(item: Item): 
     if not model:
         raise HTTPException(503, "Model not ready")
 
