@@ -7,6 +7,8 @@ from pydantic import BaseModel
 from tokenizers import Tokenizer
 import onnxruntime as ort
 from contextlib import asynccontextmanager
+from fastapi.middleware.cors import CORSMiddleware
+
 
 # --- MEMORY OPTIMIZATION ---
 # Giới hạn số luồng để giảm chiếm dụng CPU/RAM
@@ -36,7 +38,7 @@ async def lifespan(app: FastAPI):
                 id2label = config.get("id2label", {})
                 id2label = {str(k): v for k, v in id2label.items()}
         else:
-            print(f"⚠️ Không tìm thấy config tại: {config_file}. Sử dụng default labels.")
+            print(f"Không tìm thấy config tại: {config_file}. Sử dụng default labels.")
             id2label = { 
                 "0": "CARD_ISSUE", "1": "APP_LOGIN", "2": "TRANSACTION",
                 "3": "LOAN_SAVING", "4": "FRAUD_REPORT", "5": "OTHERS"
@@ -97,6 +99,13 @@ app = FastAPI(
     description="Optimized API for low-memory environments",
     version="1.0.0",
     lifespan=lifespan
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], 
+    allow_credentials=True,
+    allow_methods=["*"], 
+    allow_headers=["*"], 
 )
 
 # --- FUNCTIONS ---
