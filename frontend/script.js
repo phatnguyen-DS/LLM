@@ -13,8 +13,10 @@ const predictedClass = document.getElementById('predicted-class');
 const confidenceScore = document.getElementById('confidence-score');
 const confidenceBar = document.getElementById('confidence-bar');
 const newAnalysisBtn = document.getElementById('new-analysis-btn');
-const loadingModal = new bootstrap.Modal(document.getElementById('loading-modal'));
 const apiStatus = document.getElementById('api-status');
+
+// Không khởi tạo Modal toàn cục để tránh lỗi mất tham chiếu
+// const loadingModal = ... (Đã xóa dòng này)
 
 // Example texts for demonstration
 const exampleTexts = [
@@ -98,7 +100,6 @@ async function checkApiStatus() {
 async function classifyText(text) {
     try {
         console.log('Sending classification request to:', API_ENDPOINT);
-        console.log('Text to classify:', text);
         
         const response = await fetch(API_ENDPOINT, {
             method: 'POST',
@@ -115,7 +116,6 @@ async function classifyText(text) {
         }
         
         const data = await response.json();
-        console.log('API response data:', data);
         return data;
     } catch (error) {
         console.error('Classification Error:', error);
@@ -128,10 +128,7 @@ async function classifyText(text) {
 async function handleFormSubmit(event) {
     event.preventDefault();
     
-    if (!textInput) {
-        console.error('Text input not found!');
-        return;
-    }
+    if (!textInput) return;
     
     const text = textInput.value.trim();
     
@@ -147,19 +144,22 @@ async function handleFormSubmit(event) {
         classifyBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Đang xử lý...';
     }
     
-    // Show loading modal
-    if (loadingModal) {
-        loadingModal.show();
-    }
+    // Lấy Modal instance theo cách an toàn nhất
+    const modalEl = document.getElementById('loading-modal');
+    const loadingModal = bootstrap.Modal.getOrCreateInstance(modalEl);
+    
+    // Hiển thị modal
+    loadingModal.show();
     
     try {
         // Call API
         const result = await classifyText(text);
         
-        // Hide loading modal
-        if (loadingModal) {
-            loadingModal.hide();
-        }
+        // --- QUAN TRỌNG: Thêm delay nhỏ để đảm bảo animation mượt mà và tránh lỗi kẹt modal ---
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // Ẩn modal
+        loadingModal.hide();
         
         // Show results
         displayResults(result);
@@ -169,11 +169,8 @@ async function handleFormSubmit(event) {
             resultsSection.scrollIntoView({ behavior: 'smooth' });
         }
     } catch (error) {
-        // Hide loading modal
-        if (loadingModal) {
-            loadingModal.hide();
-        }
-        
+        // Ẩn modal nếu có lỗi
+        loadingModal.hide();
         console.error('Form submission error:', error);
     } finally {
         // Re-enable button
@@ -181,6 +178,15 @@ async function handleFormSubmit(event) {
             classifyBtn.disabled = false;
             classifyBtn.innerHTML = '<i class="fas fa-search me-2"></i>Phân loại';
         }
+
+        // --- FIX BỔ SUNG: Dọn dẹp backdrop nếu bị kẹt ---
+        // Đôi khi Bootstrap không xóa backdrop kịp thời, ta xóa thủ công để chắc chắn
+        setTimeout(() => {
+            const backdrops = document.querySelectorAll('.modal-backdrop');
+            if (backdrops.length > 0 && !document.body.classList.contains('modal-open')) {
+                backdrops.forEach(bd => bd.remove());
+            }
+        }, 500);
     }
 }
 
@@ -190,7 +196,6 @@ function updateCharCount() {
     const count = textInput.value.length;
     charCount.textContent = count;
     
-    // Update char count color based on length
     if (count < 10) {
         charCount.style.color = 'var(--danger-color)';
     } else {
@@ -201,150 +206,89 @@ function updateCharCount() {
 function showExampleText() {
     if (!textInput) return;
     
-    // Get random example
     const randomIndex = Math.floor(Math.random() * exampleTexts.length);
     const exampleText = exampleTexts[randomIndex];
     
-    // Set the text
     textInput.value = exampleText;
     updateCharCount();
-    
-    // Focus on input
     textInput.focus();
 }
 
 function displayResults(result) {
-    // Check if elements exist
-    if (!predictedClass || !confidenceScore || !confidenceBar) {
-        console.error('Result display elements not found!');
-        return;
-    }
+    if (!predictedClass || !confidenceScore || !confidenceBar) return;
     
     // Set the results
     predictedClass.textContent = result.label || 'Unknown';
     confidenceScore.textContent = `${(result.score * 100).toFixed(1)}%`;
     confidenceBar.style.width = `${(result.score * 100)}%`;
     
-    // Show results section with animation
+    // Show results section
     if (resultsSection) {
         resultsSection.classList.remove('d-none');
         resultsSection.classList.add('fade-in');
     }
     
     // Set color based on confidence
+    confidenceBar.className = 'progress-bar'; // Reset class
     if (result.score >= 0.8) {
-        confidenceBar.className = 'progress-bar bg-success';
+        confidenceBar.classList.add('bg-success');
     } else if (result.score >= 0.6) {
-        confidenceBar.className = 'progress-bar bg-warning';
+        confidenceBar.classList.add('bg-warning');
     } else {
-        confidenceBar.className = 'progress-bar bg-danger';
+        confidenceBar.classList.add('bg-danger');
     }
-    
-    console.log('Classification result:', result);
 }
 
 function resetForm() {
     if (!textInput) return;
     
-    // Clear input
     textInput.value = '';
     updateCharCount();
     
-    // Hide results section
     if (resultsSection) {
         resultsSection.classList.add('d-none');
     }
     
-    // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-    // Focus on input
     textInput.focus();
 }
 
 function showError(message) {
-    // Create toast element
-    const toast = document.createElement('div');
-    toast.className = 'toast align-items-center text-white bg-danger border-0';
-    toast.setAttribute('role', 'alert');
-    toast.setAttribute('aria-live', 'assertive');
-    toast.setAttribute('aria-atomic', 'true');
+    const toastContainer = document.getElementById('toast-container') || createToastContainer();
     
-    toast.innerHTML = `
-        <div class="d-flex">
-            <div class="toast-body">
-                ${message}
+    const toastHtml = `
+        <div class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">${message}</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
     `;
     
-    // Create toast container if it doesn't exist
-    let toastContainer = document.getElementById('toast-container');
-    if (!toastContainer) {
-        toastContainer = document.createElement('div');
-        toastContainer.id = 'toast-container';
-        toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
-        document.body.appendChild(toastContainer);
-    }
+    // Append temporarily using innerHTML (simple way)
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = toastHtml;
+    const toastEl = tempDiv.firstElementChild;
     
-    // Add toast to container
-    toastContainer.appendChild(toast);
+    toastContainer.appendChild(toastEl);
     
-    // Show toast
     if (typeof bootstrap !== 'undefined') {
-        const bsToast = new bootstrap.Toast(toast);
+        const bsToast = new bootstrap.Toast(toastEl);
         bsToast.show();
-        
-        // Remove toast when hidden
-        toast.addEventListener('hidden.bs.toast', () => {
-            toast.remove();
-        });
+        toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
     } else {
-        // Fallback if bootstrap is not available
-        setTimeout(() => {
-            toast.remove();
-        }, 5000);
+        setTimeout(() => toastEl.remove(), 5000);
     }
 }
 
-// ======== CREATE TOAST CONTAINER STYLES ========
-const style = document.createElement('style');
-style.textContent = `
-    .toast-container {
-        z-index: 1055;
-    }
-    
-    .toast {
-        opacity: 0.9;
-    }
-`;
-document.head.appendChild(style);
-
-// ======== ERROR HANDLING ========
-window.addEventListener('error', (event) => {
-    console.error('JavaScript Error:', event.error);
-});
-
-window.addEventListener('unhandledrejection', (event) => {
-    console.error('Unhandled Promise Rejection:', event.reason);
-});
+function createToastContainer() {
+    const container = document.createElement('div');
+    container.id = 'toast-container';
+    container.className = 'toast-container position-fixed bottom-0 end-0 p-3';
+    container.style.zIndex = '1055';
+    document.body.appendChild(container);
+    return container;
+}
 
 // ======== PERIODIC API STATUS CHECK ========
 setInterval(checkApiStatus, 30000); // Check every 30 seconds
-
-// ======== DEBUG FUNCTIONS ========
-window.debugAPI = function() {
-    console.log('API Base URL:', API_BASE_URL);
-    console.log('API Endpoint:', API_ENDPOINT);
-    console.log('Health Endpoint:', HEALTH_ENDPOINT);
-    console.log('DOM Elements:');
-    console.log('- Text Input:', !!textInput);
-    console.log('- Char Count:', !!charCount);
-    console.log('- Classify Button:', !!classifyBtn);
-    console.log('- Results Section:', !!resultsSection);
-    console.log('- Predicted Class:', !!predictedClass);
-    console.log('- Confidence Score:', !!confidenceScore);
-    console.log('- Confidence Bar:', !!confidenceBar);
-    console.log('- API Status:', !!apiStatus);
-};
