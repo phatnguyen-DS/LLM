@@ -1,184 +1,105 @@
 import os
 import json
-import gc
 import numpy as np
+import onnxruntime as ort
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from tokenizers import Tokenizer
-import onnxruntime as ort
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 
-
-# --- MEMORY OPTIMIZATION ---
-# Giới hạn số luồng để giảm chiếm dụng CPU/RAM
+# --- CẤU HÌNH RENDER FREE TIER  ---
 os.environ["OMP_NUM_THREADS"] = "1"
-os.environ["MKL_NUM_THREADS"] = "1"
-os.environ["NUMEXPR_NUM_THREADS"] = "1"
 os.environ["ORT_TENSORRT_FP16_ENABLE"] = "0"
 
-# --- GLOBAL VARIABLES ---
-model_session = None
+# --- BIẾN TOÀN CỤC ---
+model = None
 tokenizer = None
-id2label = {}
-MAX_LENGTH = 64
+labels = {}
+MAX_LEN = 32  # Giữ mức thấp để tiết kiệm RAM
 
-# --- LIFECYCLE MANAGEMENT ---
+# --- QUẢN LÝ VÒNG ĐỜI (Load 1 lần duy nhất) ---
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup
-    global model_session, tokenizer, id2label
+    global model, tokenizer, labels
     
-    # Load Config (Labels)
-    config_file = "models/production/config.json"
+    # 1. Load Labels
     try:
-        if os.path.exists(config_file):
-            with open(config_file, "r", encoding='utf-8') as f:
-                config = json.load(f)
-                id2label = config.get("id2label", {})
-                id2label = {str(k): v for k, v in id2label.items()}
-        else:
-            print(f"Không tìm thấy config tại: {config_file}. Sử dụng default labels.")
-            id2label = { 
-                "0": "CARD_ISSUE", "1": "APP_LOGIN", "2": "TRANSACTION",
-                "3": "LOAN_SAVING", "4": "FRAUD_REPORT", "5": "OTHERS"
-            }
-    except Exception as e:
-        print(f"Error loading config: {e}")
-        id2label = { 
-            "0": "CARD_ISSUE", "1": "APP_LOGIN", "2": "TRANSACTION",
-            "3": "LOAN_SAVING", "4": "FRAUD_REPORT", "5": "OTHERS"
-        }
+        with open("models/production/config.json", "r", encoding='utf-8') as f:
+            cfg = json.load(f)
+            labels = {str(k): v for k, v in cfg.get("id2label", {}).items()}
+    except:
+        # Fallback nếu lỗi file
+        labels = {"0": "CARD", "1": "LOGIN", "2": "TRANS", "3": "LOAN", "4": "FRAUD", "5": "OTHER"}
 
-    # Load Tokenizer
-    tokenizer_file = "models/production/tokenizer.json"
+    # 2. Load Tokenizer & Model
     try:
-        tokenizer = Tokenizer.from_file(tokenizer_file)
-        tokenizer.enable_truncation(max_length=MAX_LENGTH)
-        tokenizer.enable_padding(length=MAX_LENGTH)
-    except Exception as e:
-        print(f"Error loading tokenizer: {e}")
-        raise e
+        tokenizer = Tokenizer.from_file("models/production/tokenizer.json")
+        tokenizer.enable_truncation(max_length=MAX_LEN)
+        tokenizer.enable_padding(length=MAX_LEN)
 
-    # Load ONNX Model with optimized settings
-    model_file = "models/production/model_main.onnx"
-    try:
-        sess_options = ort.SessionOptions()
-        # Optimize for low memory
-        sess_options.intra_op_num_threads = 1
-        sess_options.inter_op_num_threads = 1
-        sess_options.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
-        sess_options.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
-        # Enable memory optimization
-        sess_options.enable_cpu_mem_arena = False
-        sess_options.enable_mem_pattern = False
+        # Config ONNX tiết kiệm RAM tối đa
+        opts = ort.SessionOptions()
+        opts.intra_op_num_threads = 1
+        opts.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
+        opts.enable_cpu_mem_arena = False
         
-        model_session = ort.InferenceSession(
-            model_file, 
-            sess_options, 
-            providers=['CPUExecutionProvider']
-        )
-        
-        # Force garbage collection after model load
-        gc.collect()
-        
+        model = ort.InferenceSession("models/production/model_main.onnx", opts, providers=['CPUExecutionProvider'])
+        print(">>> AI Model Loaded Successfully")
     except Exception as e:
-        print(f"Error loading model: {e}")
-        raise e
-    
+        print(f">>> Error loading model: {e}")
+
     yield
-    
-    # Shutdown
-    del model_session
-    del tokenizer
-    gc.collect()
+    # Dọn dẹp khi tắt app
+    model = None
+    tokenizer = None
 
-# --- APP INITIALIZATION ---
-app = FastAPI(
-    title="Text Classification API",
-    description="Optimized API for low-memory environments",
-    version="1.0.0",
-    lifespan=lifespan
-)
+# --- KHỞI TẠO APP ---
+app = FastAPI(lifespan=lifespan)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], 
-    allow_credentials=True,
-    allow_methods=["*"], 
-    allow_headers=["*"], 
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-# --- FUNCTIONS ---
-def stable_softmax(x):
+class Item(BaseModel):
+    text: str
+
+# --- XỬ LÝ ---
+def softmax(x):
     e_x = np.exp(x - np.max(x))
     return e_x / e_x.sum(axis=-1, keepdims=True)
 
-def process_text(text: str):
-    """Process text with memory-efficient tokenization"""
-    if not text.strip():
-        text = "empty"
-    
-    # Tokenize with minimal memory usage
-    encoding = tokenizer.encode(text)
-    
-    # Convert to numpy arrays directly
-    input_ids = np.array([encoding.ids], dtype=np.int64)
-    attention_mask = np.array([encoding.attention_mask], dtype=np.int64)
-    token_type_ids = np.array([encoding.type_ids], dtype=np.int64)
-    
-    return input_ids, attention_mask, token_type_ids
-
-# --- ENDPOINTS ---
-@app.get("/")
-def read_root():
-    return {"Health_check": "OK", "Model": "Ready"}
-
 @app.get("/health")
-async def health_check():
-    status = "ok" if model_session and tokenizer else "loading"
-    return {"status": status, "memory": "optimized"}
-
-class PredictRequest(BaseModel):
-    text: str
+def health():
+    return {"status": "ok"} if model else {"status": "error"}
 
 @app.post("/predict")
-async def predict_endpoint(req: PredictRequest):
-    if not model_session or not tokenizer:
-        raise HTTPException(status_code=503, detail="Model not ready")
+def predict(item: Item): # QUAN TRỌNG: Không dùng 'async' để tránh treo
+    if not model:
+        raise HTTPException(503, "Model not ready")
+
+    text = item.text.strip() or "empty"
     
+    # 1. Tokenize nhanh
+    enc = tokenizer.encode(text)
+    inputs = {
+        "input_ids": np.array([enc.ids], dtype=np.int64),
+        "attention_mask": np.array([enc.attention_mask], dtype=np.int64),
+        "token_type_ids": np.array([enc.type_ids], dtype=np.int64)
+    }
+
+    # 2. Inference & Post-process
     try:
-        # Process text
-        input_ids, attention_mask, token_type_ids = process_text(req.text)
-        
-        # Prepare input
-        ort_inputs = {
-            "input_ids": input_ids,
-            "attention_mask": attention_mask,
-            "token_type_ids": token_type_ids
-        }
-        
-        # Inference
-        outputs = model_session.run(None, ort_inputs)
-        logits = outputs[0][0]
-        
-        # Post-processing
-        probs = stable_softmax(logits)
-        pred_id = np.argmax(probs)
-        confidence = float(probs[pred_id])
-        label = id2label.get(str(pred_id), f"Unknown_{pred_id}")
-        
-        # Clean up to free memory
-        del input_ids, attention_mask, token_type_ids, outputs, logits, probs
-        gc.collect()
+        logits = model.run(None, inputs)[0][0]
+        probs = softmax(logits)
+        pred_idx = np.argmax(probs)
         
         return {
-            "label": label,
-            "score": round(confidence, 4)
+            "label": labels.get(str(pred_idx), "Unknown"),
+            "score": round(float(probs[pred_idx]), 4)
         }
-        
-    except MemoryError:
-        gc.collect()
-        raise HTTPException(status_code=507, detail="Insufficient storage, please try again")
-    except Exception as e:
-        print(f"Prediction error: {e}")
-        raise HTTPException(status_code=500, detail="Prediction failed")
+    except Exception:
+        raise HTTPException(500, "Inference Failed")
