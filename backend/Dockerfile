@@ -30,7 +30,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code and model
 RUN mkdir -p models/production backend
 COPY models/production/ ./models/production/
-COPY backend/api-minimal.py ./backend/api.py
+COPY backend/api.py ./backend/api.py
 
 # Create non-root user for security
 RUN useradd --create-home --shell /bin/bash app && \
