@@ -1,4 +1,4 @@
-# Hệ thống Phân loại Văn bản Tiếng Việt ứng dụng trong xử lý khiếu nạinại
+# Hệ thống Phân loại Văn bản Tiếng Việt ứng dụng trong xử lý khiếu nại
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)](https://fastapi.tiangolo.com)
@@ -51,8 +51,10 @@ LLM/
 
 ## Hiệu suất mô hình
 ### model fine turning float 32
+<img width="523" height="271" alt="Image" src="https://github.com/user-attachments/assets/56637ef3-7769-4d91-ad08-b0894ba44d67" />
 
 ### model fine turning convert to onnx + int8
+<img width="531" height="251" alt="Image" src="https://github.com/user-attachments/assets/45c56e7a-dcea-458b-8652-cee7e81fc012" />
 
 ## Quick Start
 
@@ -82,7 +84,7 @@ uvicorn api:app --host 0.0.0.0 --port 8000
 ### 4. Mở frontend
 Mở file `frontend/index.html` trong trình duyệt hoặc truy cập `http://localhost:8000` (nếu được cấu hình)
 
-## 🐳 Docker Deployment
+## Docker Deployment
 
 ```bash
 # Build image
@@ -92,7 +94,7 @@ docker build -t text-classification .
 docker run -p 8000:8000 text-classification
 ```
 
-## ☁️ Cloud Deployment
+## Cloud Deployment
 
 ### Production Deployment
 - **Frontend**: https://llmfontend.vercel.app/ (Vercel)
@@ -144,7 +146,7 @@ Kết quả trả về:
 }
 ```
 
-## 🛠️ Huấn luyện lại mô hình
+## Huấn luyện lại mô hình
 
 Nếu bạn muốn huấn luyện lại mô hình với dữ liệu mới:
 
@@ -164,7 +166,7 @@ python -m quant.onnx_int8
 python -m quant.convert
 ```
 
-## 📈 Hiệu năng
+## Hiệu năng
 
 - **Độ chính xác**: ~87%
 - **Thời gian suy luận**: <100ms mỗi yêu cầu
@@ -172,7 +174,7 @@ python -m quant.convert
 - **Bộ nhớ sử dụng**: <100MB mỗi yêu cầu
 - **Tối ưu cho phần cứng yếu**: Hoạt động ổn định trên 0.1 CPU, 512MB RAM
 
-## ⚡ Tối ưu hóa cho Phần cứng Yếu
+## Tối ưu hóa cho Phần cứng Yếu
 
 ### Backend Optimization
 - Sử dụng Dynamic Quantization (INT8) giảm 75% kích thước mô hình
@@ -196,6 +198,7 @@ Dự án này được phân phối dưới giấy phép MIT - xem file [LICENSE
 **TAN PHAT**
 - Email: tanphat6406@gmail.com
 - SĐT: 0333786257
+- linkedin: https://www.linkedin.com/in/phat-nguyen-a264722b7/
 
 ## Cảm ơn
 
