@@ -1,294 +1,205 @@
-# Text Classification LLM
+# Hệ thống Phân loại Văn bản Tiếng Việt ứng dụng trong xử lý khiếu nạinại
 
-Dự án phân loại văn bản tiếng Việt sử dụng mô hình Transformer, triển khai với kiến trúc microservices và tối ưu hóa hiệu suất với ONNX.
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)](https://fastapi.tiangolo.com)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## 🚀 Overview
+Dự án là một hệ thống phân loại văn bản khiếu nại bằng tiếng Việt sử dụng mô hình mini LLMLLM. Hệ thống được xây dựng với kiến trúc backend-frontend, cho phép người dùng nhập văn bản khiếu nại và hệ thống sẽ tự động phân loại vào các lớp phù hợp => mục tiêu đưa các yêu cầu đến phòng ban xử các vấn đề chuyên trách.
 
-Dự án này là một hệ thống phân loại văn bản hoàn chỉnh từ end-to-end, được xây dựng với kiến trúc microservices, bao gồm:
-- **Backend API**: FastAPI với ONNX Runtime để phục vụ inference hiệu suất cao
-- **Frontend UI**: Streamlit cho giao diện người dùng tương tác
-- **Training Pipeline**: Quy trình MLOps hoàn chỉnh từ xử lý dữ liệu đến huấn luyện và triển khai
-- **Model Optimization**: Quantization và tối ưu hóa model để giảm kích thước và tăng tốc độ inference
+live app for test : https://llmfontend.vercel.app/
 
-## 📁 Cấu trúc thư mục
+## Tính năng chính
+
+- **Phân loại chính xác**: Phân loại văn bản khiếu nại tiếng Việt vào 6 lớp chuyên biệt
+- **Tối ưu hóa**: Sử dụng kỹ thuật quantization INT8 để giảm kích thước mô hình và tăng tốc độ
+- **API RESTful**: Cung cấp API endpoint để tích hợp với các hệ thống khác
+- **Giao diện thân thiện**: Web interface đơn giản, dễ sử dụng
+- **Triển khai dễ dàng**: Hỗ trợ Docker container và cloud deployment
+
+##  Kiến trúc hệ thống
 
 ```
-text-classification-llm/
-│
-├── .github/                   # CI/CD workflows (sẽ được thêm)
-├── .gitignore                 # Ignore venv, __pycache__, models nặng (.bin)
-├── README.md                  # Tài liệu dự án
-│
-├── data/                      # --- QUẢN LÝ DỮ LIỆU ---
-│   ├── raw/                   # Dữ liệu thô (csv, excel) chưa xử lý
-│   │   └── banking_text.csv   # Dataset văn bản ngân hàng tiếng Việt
-│   ├── processed/             # Dữ liệu đã làm sạch (dùng để train)
-│   │   ├── train.csv          # Dữ liệu huấn luyện
-│   │   ├── val.csv            # Dữ liệu validation
-│   │   └── test.csv           # Dữ liệu test
-│
-├── models/                    # --- MODEL ARTIFACTS ---
-│   ├── raw_model/             # Model PyTorch sau khi fine-tune
-│   ├── onnx_int8/             # Model ONNX Int8 (tạm thời)
-│   └── production/            # Model ONNX Int8 (sẵn sàng deploy)
-│       ├── model_main.onnx    # Model chính
-│       ├── tokenizer.json     # Tokenizer
-│       └── config.json        # Cấu hình model
-│
-├── training_pipeline/         # --- PIPELINE TRAINING ---
-│   ├── requirements.txt       # Dependencies cho training
-│   │
-│   ├── notebooks/             # Jupyter Notebooks
-│   │   └── 01_eda_analysis.ipynb  # Phân tích dữ liệu
-│   │
-│   └── src/                   # Source code xử lý logic
-│       ├── __init__.py
-│       ├── cleaning/          # Module làm sạch dữ liệu
-│       │   ├── __init__.py
-│       │   └── clean.py       # Script làm sạch và split data
-│       ├── training/          # Module huấn luyện model
-│       │   ├── __init__.py
-│       │   └── train.py       # Script fine-tuning model
-│       └── quant/             # Module quantization
-│           ├── __init__.py
-│           ├── onnx_int8.py   # Script quantize ONNX
-│           └── convert.py     # Script chuyển đổi model
-│
-├── backend/                   # --- SERVICE 1: FASTAPI ---
-│   ├── api.py                 # API endpoints
-│   ├── requirements.txt       # Dependencies cho inference
-│   └── Dockerfile             # Dockerfile cho backend
-│
-└── frontend/                  # --- SERVICE 2: STREAMLIT ---
-    ├── streamlit.py           # Giao diện người dùng
-    ├── requirements.txt       # Dependencies cho frontend
-    └── Dockerfile             # Dockerfile cho frontend
+Frontend (HTML/CSS/JS) ←→ Backend API (FastAPI) ←→ mini LLM Model (ONNX)
 ```
 
-## 🛠️ Cài đặt và sử dụng
+##  Cấu trúc dự án
 
-### Yêu cầu
-- Python 3.9+
-- Docker (nếu chạy với container)
-- GPU (nếu huấn luyện)
+```
+LLM/
+├── backend/                 # Backend API
+│   ├── api.py              # FastAPI server
+│   ├── Dockerfile          # Docker configuration
+│   └── requirements.txt   # Dependencies
+├── frontend/               # Frontend UI
+│   ├── index.html         # Giao diện chính
+│   ├── script.js          # JavaScript logic
+│   └── styles.css         # Styling
+├── data/                   # Dữ liệu
+├── models/                 # Mô hình ML
+├── training_pipeline/     # Training scripts
+└── README.md              # File này
+```
 
-### 1. Huấn luyện model mới
+## ccác lớp phân loại
 
+1. **CARD_ISSUE** - Các vấn đề liên quan đến thẻ ngân hàng
+2. **APP_LOGIN** - Vấn đề đăng nhập ứng dụng
+3. **TRANSACTION** - Các vấn đề giao dịch
+4. **LOAN_SAVING** - Các vấn đề vay và tiết kiệm
+5. **FRAUD_REPORT** - Báo cáo gian lận
+6. **OTHERS** - Các vấn đề khác
+
+## Hiệu suất mô hình
+### model fine turning float 32
+
+### model fine turning convert to onnx + int8
+
+## Quick Start
+
+### 1. Clone repository
 ```bash
-# Clone repository
-git clone https://github.com/username/text-classification-llm.git
-cd text-classification-llm
-
-# Cài đặt dependencies cho training
-cd training_pipeline
-pip install -r requirements.txt
-
-# Xử lý dữ liệu
-python src/cleaning/clean.py
-
-# Huấn luyện model
-python src/training/train.py
-
-# Quantize model
-python src/quant/onnx_int8.py
-
-# Chuyển đổi model sang production
-python src/quant/convert.py
+git clone https://github.com/yourusername/LLM.git
+cd LLM
 ```
 
-### 2. Chạy backend API
-
+### 2. Cài đặt dependencies
 ```bash
-# Cài đặt dependencies
+# Backend
 cd backend
 pip install -r requirements.txt
 
-# Chạy API server
-uvicorn api:app --host 0.0.0.0 --port 10000 --reload
-```
-
-### 3. Chạy frontend UI
-
-```bash
-# Cài đặt dependencies
-cd frontend
+# Nếu cần huấn luyện lại mô hình
+cd ../training_pipeline
 pip install -r requirements.txt
-
-# Chạy Streamlit app
-streamlit run streamlit.py --server.port 8501
 ```
 
-### 4. Sử dụng Docker
+### 3. Chạy API server
+```bash
+cd backend
+uvicorn api:app --host 0.0.0.0 --port 8000
+```
+
+### 4. Mở frontend
+Mở file `frontend/index.html` trong trình duyệt hoặc truy cập `http://localhost:8000` (nếu được cấu hình)
+
+## 🐳 Docker Deployment
 
 ```bash
-# Build và chạy backend
-docker build -f backend/Dockerfile -t llm-backend .
-docker run -p 10000:10000 llm-backend
+# Build image
+docker build -t text-classification .
 
-# Build và chạy frontend
-docker build -f frontend/Dockerfile -t llm-frontend .
-docker run -p 8501:8501 llm-frontend
+# Run container
+docker run -p 8000:8000 text-classification
 ```
 
-### 5. Sử dụng API
+## ☁️ Cloud Deployment
 
-```python
-import requests
+### Production Deployment
+- **Frontend**: https://llmfontend.vercel.app/ (Vercel)
+- **Backend**: https://llm-vhhs.onrender.com (Render Free Plan)
+- **Resources**: 1 CPU, 512MB RAM
 
-# Gửi request đến API
-response = requests.post(
-    "http://localhost:10000/predict",
-    json={"text": "Thẻ của tôi bị lỗi không thể sử dụng"}
-)
+### Render (Backend)
+1. Kết nối repository GitHub với Render
+2. Sử dụng Dockerfile trong thư mục backend
+3. Cấu hình môi trường 1 CPU, 512MB RAM (Free Plan)
+4. Tự động deploy khi push code lên main branch
 
-# Xem kết quả
-result = response.json()
-print(f"Label: {result['label']}")
-print(f"Score: {result['score']}")
-```
+### Vercel (Frontend)
+1. Kết nối repository GitHub với Vercel
+2. Đặt thư mục frontend làm root directory
+3. Cấu hình biến môi trường nếu cần
+4. Tự động deploy khi có thay đổi
 
-## 📊 Thông số kỹ thuật
-
-### Model
-- **Base Model**: `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`
-- **Architecture**: Transformer-based encoder
-- **Classes**: 6
-  - CARD_ISSUE: Vấn đề liên quan đến thẻ
-  - APP_LOGIN: Vấn đề đăng nhập ứng dụng
-  - TRANSACTION: Vấn đề giao dịch
-  - LOAN_SAVING: Vấn đề vay/tiết kiệm
-  - FRAUD_REPORT: Báo cáo lừa đảo
-  - OTHERS: Các vấn đề khác
-- **Max Sequence Length**: 64 tokens
-- **Optimization**: Dynamic Quantization (INT8)
-
-### Performance Metrics
-- **Accuracy**: TBD (sẽ được cập nhật sau khi đánh giá)
-- **F1 Score**: TBD
-- **Model Size**: ~650KB (sau quantization)
-- **Inference Time**: <50ms (CPU)
-- **Throughput**: TBD requests/second
-
-## 🏗️ Kiến trúc hệ thống
-
-### Microservices Architecture
-- **Backend Service**: FastAPI với ONNX Runtime
-  - Endpoint `/predict`: Dự đoán lớp văn bản
-  - Endpoint `/health`: Kiểm tra trạng thái hệ thống
-- **Frontend Service**: Streamlit UI
-  - Giao diện người dùng thân thiện
-  - Tương tác với backend qua REST API
-
-### Data Flow
-1. Người dùng nhập văn bản vào frontend
-2. Frontend gửi request đến backend API
-3. Backend tiền xử lý text và chuyển thành tokens
-4. ONNX model thực hiện inference
-5. Backend trả về kết quả cho frontend
-6. Frontend hiển thị kết quả cho người dùng
-
-### Model Deployment Pipeline
-1. Raw Data → Cleaned Data (clean.py)
-2. Cleaned Data → Trained Model (train.py)
-3. Trained Model → ONNX Model (onnx_int8.py)
-4. ONNX Model → Production Model (convert.py)
-5. Production Model → Containerized API (Docker)
-
-## 🔧 Best Practices và Optimizations
-
-### Backend Optimizations
-- Giới hạn số luồng CPU để tối ưu tài nguyên
-- Sử dụng ONNX Runtime cho inference hiệu suất cao
-- Caching model và tokenizer để tránh tải lại nhiều lần
-- Error handling và logging chi tiết
-- FastAPI với automatic docs generation
-
-### Frontend Features
-- Responsive design cho nhiều thiết bị
-- Xử lý lỗi người dùng thân thiện
-- Health check và status indicators
-- Ví dụ mẫu để hướng dẫn người dùng
-- Non-blocking UI với loading states
-
-### Model Optimizations
-- Dynamic quantization để giảm kích thước model
-- Multi-stage Docker builds để tối ưu image size
-- Separate production and training environments
-
-## 🚀 Triển khai
-
-### Local Development
+### Heroku (Alternative)
 ```bash
-# Backend
-cd backend && uvicorn api:app --reload
-
-# Frontend
-cd frontend && streamlit run streamlit.py
+# Build và deploy
+heroku create your-app-name
+heroku container:push web -a your-app-name
+heroku container:release web -a your-app-name
 ```
 
-### Production (Render)
-- **Backend**: Deploy FastAPI service với Docker
-- **Frontend**: Deploy Streamlit app với Docker
-- **Database**: (Optional) Ghi log và metrics
-- **Monitoring**: Health checks và uptime monitoring
+## API Documentation
 
-### Image Sizes
-- **Backend Image**: ~200MB (bao gồm model)
-- **Frontend Image**: ~50MB
-- **Total**: ~250MB (nằm trong giới hạn của Render Free)
+### Health Check
+```http
+GET /health
+```
+Trả về trạng thái của API và mô hình.
 
-## 📝 Todo List (Middle Level Features)
+### Phân loại văn bản
+```http
+POST /predict
+Content-Type: application/json
 
-### Testing
-- [ ] Unit tests cho tất cả modules
-- [ ] Integration tests cho API endpoints
-- [ ] Model performance regression tests
-- [ ] End-to-end tests cho toàn bộ pipeline
+{
+  "text": "Thẻ của tôi bị lỗi không thể thanh toán được"
+}
+```
+Kết quả trả về:
+```json
+{
+  "label": "CARD_ISSUE",
+  "score": 0.95
+}
+```
 
-### Monitoring & Logging
-- [ ] Structured logging với ELK stack
-- [ ] Prometheus metrics cho performance
-- [ ] Grafana dashboard visualization
-- [ ] Alert system cho lỗi và anomalies
+## 🛠️ Huấn luyện lại mô hình
 
-### Security
-- [ ] API authentication với JWT
-- [ ] Rate limiting để bảo vệ API
-- [ ] Input validation và sanitization
-- [ ] HTTPS và secure headers
+Nếu bạn muốn huấn luyện lại mô hình với dữ liệu mới:
 
-### CI/CD
-- [ ] GitHub Actions cho automated testing
-- [ ] Automated model validation
-- [ ] Blue-green deployment strategy
-- [ ] Rollback mechanisms
+```bash
+cd training_pipeline/src
 
-### Performance
-- [ ] Redis caching cho frequent requests
-- [ ] Batch processing cho multiple texts
-- [ ] Model versioning and A/B testing
-- [ ] Load balancing và horizontal scaling
+# 1. Làm sạch và chuẩn bị dữ liệu
+python -m cleaning.clean
 
-## 🤝 Đóng góp
+# 2. Huấn luyện mô hình
+python -m training.train
 
-1. Fork repository
-2. Tạo feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open Pull Request
+# 3. Quantization để tối ưu
+python -m quant.onnx_int8
 
-## 📄 License
+# 4. Chuẩn bị cho production
+python -m quant.convert
+```
 
-Dự án này được cấp phép theo MIT License - xem file [LICENSE](LICENSE) để biết chi tiết.
+## 📈 Hiệu năng
 
-## 👥 Team
+- **Độ chính xác**: ~87%
+- **Thời gian suy luận**: <100ms mỗi yêu cầu
+- **Kích thước mô hình**: ~129MB (sau quantization)
+- **Bộ nhớ sử dụng**: <100MB mỗi yêu cầu
+- **Tối ưu cho phần cứng yếu**: Hoạt động ổn định trên 0.1 CPU, 512MB RAM
 
-- **Lead AI Engineer**: [Tên]
-- **ML Engineer**: [Tên]
-- **Backend Developer**: [Tên]
-- **Frontend Developer**: [Tên]
+## ⚡ Tối ưu hóa cho Phần cứng Yếu
 
-## 📞 Liên hệ
+### Backend Optimization
+- Sử dụng Dynamic Quantization (INT8) giảm 75% kích thước mô hình
+- ONNX Runtime thay cho PyTorch cho inference nhanh hơn
+- Giới hạn số luồng xử lý (`OMP_NUM_THREADS=1`)
+- Tối ưu memory usage cho 512MB RAM
 
-- **Project Link**: [https://github.com/username/text-classification-llm](https://github.com/username/text-classification-llm)
-- **Issues**: [https://github.com/username/text-classification-llm/issues](https://github.com/username/text-classification-llm/issues)
+### Frontend Optimization
+- Sử dụng CDN cho các tài nguyên tĩnh
+- Responsive design cho mobile devices
+- Tối giản animations và transitions
+- Error handling gracefully khi API unavailable
+
+
+##  Giấy phép
+
+Dự án này được phân phối dưới giấy phép MIT - xem file [LICENSE](LICENSE) để biết thêm chi tiết.
+
+## Tác giả
+
+**TAN PHAT**
+- Email: tanphat6406@gmail.com
+- SĐT: 0333786257
+
+## Cảm ơn
+
+- Hugging Face Transformers cho mô hình pre-trained
+- FastAPI team cho framework API mạnh mẽ
+- Bootstrap cho UI components
+- Render và Vercel cho hosting miễn phí

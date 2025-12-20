@@ -8,7 +8,7 @@ from tokenizers import Tokenizer
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 
-# --- CẤU HÌNH RENDER FREE TIER  ---
+# --- CẤU HÌNH RENDER FREE TIER 512MB RAM ---
 os.environ["OMP_NUM_THREADS"] = "1"
 os.environ["ORT_TENSORRT_FP16_ENABLE"] = "0"
 
@@ -16,9 +16,9 @@ os.environ["ORT_TENSORRT_FP16_ENABLE"] = "0"
 model = None
 tokenizer = None
 labels = {}
-MAX_LEN = 32  # Giữ mức thấp để tiết kiệm RAM
+MAX_LEN = 32  
 
-# --- QUẢN LÝ VÒNG ĐỜI (Load 1 lần duy nhất) ---
+# --- QUẢN LÝ VÒNG ĐỜI ---
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global model, tokenizer, labels
