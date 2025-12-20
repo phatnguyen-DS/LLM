@@ -17,7 +17,6 @@ os.makedirs(TEMP_PATH, exist_ok=True)
 os.makedirs(OUTPUT_PATH, exist_ok=True)
 
 try:
-    # Load model lên CPU
     model = AutoModelForSequenceClassification.from_pretrained(INPUT_PATH).cpu()
     tokenizer = AutoTokenizer.from_pretrained(INPUT_PATH)
     model.eval()
@@ -31,13 +30,14 @@ inputs = tokenizer(dummy_text, return_tensors="pt")
 onnx_float_file = os.path.join(TEMP_PATH, "model.onnx")
 torch.onnx.export(
     model,
-    (inputs['input_ids'], inputs['attention_mask']),
+    (inputs['input_ids'], inputs['attention_mask'], inputs.get('token_type_ids', torch.zeros_like(inputs['input_ids']))),
     onnx_float_file,
-    input_names=['input_ids', 'attention_mask'],
+    input_names=['input_ids', 'attention_mask', 'token_type_ids'],
     output_names=['logits'],
     dynamic_axes={
         'input_ids': {0: 'batch_size', 1: 'sequence_length'},
         'attention_mask': {0: 'batch_size', 1: 'sequence_length'},
+        'token_type_ids': {0: 'batch_size', 1: 'sequence_length'},
         'logits': {0: 'batch_size'}
     },
     opset_version=14 

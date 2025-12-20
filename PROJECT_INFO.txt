@@ -1,0 +1,219 @@
+===========================================================================
+                        DỰ ÁN TEXT CLASSIFICATION LLM
+===========================================================================
+
+I. TỔNG QUAN
+===========================================================================
+- Tên dự án: Text Classification LLM
+- Mục đích: Phân loại văn bản tiếng Việt trong lĩnh vực ngân hàng
+- Base Model: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+- Lớp phân loại: 6 lớp (CARD_ISSUE, APP_LOGIN, TRANSACTION, LOAN_SAVING, FRAUD_REPORT, OTHERS)
+- Tối ưu hóa: ONNX Runtime với Dynamic Quantization (INT8)
+
+II. CẤU TRÚC DỰ ÁN
+===========================================================================
+```
+LLM/
+├── backend/                    # Backend API Service
+│   ├── api.py                 # API đầy đủ tính năng
+│   ├── api-simple.py           # API tối giản cho môi trường giới hạn tài nguyên
+│   ├── requirements.txt        # Dependencies cho backend
+│   └── Dockerfile            # Dockerfile cho backend
+├── frontend/                   # Frontend UI Service
+│   ├── index.html            # Giao diện người dùng
+│   ├── styles.css            # CSS tùy chỉnh
+│   ├── script.js             # JavaScript xử lý tương tác
+│   ├── Dockerfile            # Dockerfile cho frontend
+│   └── Dockerfile.simple     # Dockerfile tối giản
+├── models/                    # Model artifacts
+│   ├── raw_model/           # Mô hình PyTorch sau fine-tune
+│   ├── onnx_int8/           # Mô hình ONNX INT8 tạm thời
+│   └── production/          # Mô hình ONNX INT8 sẵn sàng deploy
+│       ├── model_main.onnx   # Mô hình chính
+│       ├── tokenizer.json    # Tokenizer
+│       └── config.json      # Cấu hình model
+├── data/                      # Dữ liệu
+│   ├── raw/                 # Dữ liệu thô
+│   │   └── banking_text.csv
+│   └── processed/           # Dữ liệu đã xử lý
+│       ├── train.csv
+│       ├── val.csv
+│       └── test.csv
+├── training_pipeline/          # Pipeline huấn luyện
+│   ├── src/                 # Source code
+│   └── requirements.txt     # Dependencies cho training
+└── docker-compose.yml         # Cấu hình Docker Compose
+```
+
+III. BACKEND API
+===========================================================================
+A. API Endpoints
+1. GET /
+   - Health check cơ bản
+   - Response: {"Health_check": "OK", "Model": "Ready", "Version": "Simple"}
+
+2. GET /health
+   - Health check chi tiết
+   - Response: {"status": "ok", "model": "loaded", "memory": "optimized"}
+
+3. POST /predict
+   - Phân loại văn bản
+   - Request: {"text": "Nội dung cần phân loại"}
+   - Response: {"label": "CARD_ISSUE", "score": 0.9342}
+
+B. Tối ưu hóa bộ nhớ
+- Giới hạn số luồng CPU: OMP_NUM_THREADS=1, MKL_NUM_THREADS=1
+- Sử dụng ONNX Runtime thay vì PyTorch
+- Garbage collection sau mỗi request
+- Session options tối ưu cho low memory
+
+C. Dependencies tối thiểu
+```
+fastapi==0.104.1
+uvicorn==0.24.0.post1
+onnxruntime==1.16.3
+numpy==1.26.2
+tokenizers==0.20.3
+pydantic==2.5.2
+python-multipart==0.0.6
+```
+
+IV. FRONTEND UI
+===========================================================================
+A. Công nghệ
+- HTML5, CSS3, JavaScript (ES6+)
+- Bootstrap 5 cho responsive design
+- Font Awesome 6 cho icons
+- Google Fonts (Inter)
+
+B. Tính năng
+- Giao diện hiện đại, responsive
+- Form nhập văn bản với validation
+- Hiển thị kết quả với độ tin cậy
+- Health check trạng thái API
+- Ví dụ mẫu để thử nghiệm
+- Xử lý lỗi thân thiện
+
+C. Kết nối API
+- URL API: http://localhost:10000 (local) hoặc https://your-url.onrender.com (production)
+- Endpoint chính: /predict
+- Health check: /health
+
+V. MODEL
+===========================================================================
+A. Thông số kỹ thuật
+- Base Model: paraphrase-multilingual-MiniLM-L12-v2
+- Architecture: Transformer-based encoder
+- Vocabulary size: 250,037
+- Max sequence length: 512
+- Hidden size: 384
+- Number of layers: 12
+- Number of attention heads: 12
+
+B. Lớp phân loại
+1. CARD_ISSUE: Vấn đề liên quan đến thẻ
+2. APP_LOGIN: Vấn đề đăng nhập ứng dụng
+3. TRANSACTION: Vấn đề giao dịch
+4. LOAN_SAVING: Vấn đề vay/tiết kiệm
+5. FRAUD_REPORT: Báo cáo lừa đảo
+6. OTHERS: Các vấn đề khác
+
+C. Tối ưu hóa
+- Dynamic Quantization (INT8)
+- Model size giảm từ ~100MB xuống ~25MB
+- Inference time dưới 50ms trên CPU
+- Tương thích với ONNX Runtime
+
+VI. DEPLOYMENT
+===========================================================================
+A. Local Deployment
+- Backend: uvicorn backend.api-simple:app --host 0.0.0.0 --port 10000
+- Frontend: Python http server hoặc Nginx
+- Backend API at: http://localhost:10000
+- Frontend UI at: http://localhost:8080
+
+B. Render Deployment
+- Backend: Web Service với Dockerfile
+- Frontend: Static Site với Dockerfile
+- Memory limit: 512MB
+- CPU limit: 0.5 core
+- Auto-scaling: Không (tránh vượt quá giới hạn)
+
+C. Docker Configuration
+- Backend: Python 3.9-slim-bullseye
+- Frontend: Nginx 1.23-alpine
+- Multi-stage build để tối ưu size
+- Non-root user cho security
+
+VII. TRAINING PIPELINE
+===========================================================================
+A. Quy trình
+1. Data Cleaning & Preprocessing
+   - Loại bỏ ký tự đặc biệt
+   - Chuẩn hóa văn bản tiếng Việt
+   - Loại bỏ duplicates
+   - Chia train/val/test (80/10/10)
+
+2. Model Fine-tuning
+   - Base model: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+   - Learning rate: 2e-5
+   - Batch size: 32
+   - Epochs: 5
+   - Evaluation metric: F1-score (weighted)
+
+3. Model Optimization
+   - Convert to ONNX format
+   - Dynamic Quantization (INT8)
+   - Optimize for CPU inference
+
+B. Dependencies
+```
+torch
+transformers
+pandas
+numpy
+scikit-learn
+datasets
+onnx
+onnxruntime
+accelerate
+jupyter
+```
+
+VIII. PERFORMANCE METRICS
+===========================================================================
+- Model size: ~25MB (sau quantization)
+- Inference time: <50ms (CPU)
+- Memory usage: <200MB (peak)
+- API response time: <100ms (network excluded)
+- Throughput: ~10 requests/second (on 512MB RAM)
+
+IX. TROUBLESHOOTING
+===========================================================================
+A. Common Issues
+1. "Model not ready" error
+   - Giải pháp: Kiểm tra file model trong models/production/
+
+2. "API Status: Offline"
+   - Giải pháp: Kiểm tra backend đã khởi động chưa
+
+3. Memory limit exceeded (Render)
+   - Giải pháp: Sử dụng api-simple.py thay vì api.py
+
+B. Optimization Tips
+- Giới hạn batch size <= 5
+- Xóa intermediate variables sau mỗi request
+- Sử dụng garbage collection
+- Giới hạn số luồng CPU
+
+X. FUTURE IMPROVEMENTS
+===========================================================================
+1. Caching với Redis
+2. Batch processing optimization
+3. Model versioning
+4. A/B testing framework
+5. Monitoring & logging
+6. CI/CD automation
+7. Security hardening
+
+===========================================================================

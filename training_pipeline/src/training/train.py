@@ -35,8 +35,8 @@ id2label = {
 label2id = {v: k for k, v in id2label.items()}
 
 # Load data
-train_df = pd.read_csv("train.csv")
-val_df = pd.read_csv("val.csv")
+train_df = pd.read_csv(f"{BASE_DIR}/data/processed/train.csv")
+val_df = pd.read_csv(f"{BASE_DIR}/data/processed/val.csv")
 
 # convert to datasets
 train_dataset = Dataset.from_pandas(train_df[['text_clean', 'label_id']].rename(columns={'label_id': 'labels'}))
