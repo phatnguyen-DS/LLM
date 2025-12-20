@@ -1,5 +1,5 @@
 // ======== CONFIGURATION ========
-const API_BASE_URL = 'http://localhost:10000';
+const API_BASE_URL = 'https://llm-vhhs.onrender.com';
 const API_ENDPOINT = `${API_BASE_URL}/predict`;
 const HEALTH_ENDPOINT = `${API_BASE_URL}/health`;
 
